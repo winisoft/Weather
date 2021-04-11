@@ -1,0 +1,340 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/black"
+    tools:viewBindingIgnore="false"
+    android:padding="5dp">
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guideline"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="1242dp"
+        android:layout_marginEnd="3777dp"
+        android:orientation="vertical"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintGuide_begin="517dp"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <TextView
+        android:id="@+id/validate_title"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="32dp"
+        android:fontFamily="@font/gmsansui_regular"
+        android:text="@string/mybrand_10_4_enterPasscode_csm"
+        android:textColor="@color/white"
+        android:textSize="@dimen/text_size_large"
+        app:layout_constraintBottom_toBottomOf="@+id/btn_validate_back"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/btn_validate_back"
+        app:layout_constraintTop_toTopOf="@+id/btn_validate_back" />
+
+    <TextView
+        android:id="@+id/validate_subtitle"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="32dp"
+        android:layout_marginTop="16dp"
+        android:fontFamily="@font/gmsansui_regular"
+        android:text="@string/mybrand_10_4_passcodeReceipt_csm"
+        android:textColor="?attr/text_color"
+        android:textSize="@dimen/text_size_large"
+        app:layout_constraintEnd_toStartOf="@+id/guideline"
+        app:layout_constraintStart_toEndOf="@+id/btn_validate_back"
+        app:layout_constraintTop_toBottomOf="@+id/validate_title" />
+
+    <Button
+        android:id="@+id/btn_validate_back"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:layout_marginStart="8dp"
+        android:background="@drawable/btn_close_selector"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <Button
+        android:id="@+id/btn_validate_resend"
+        style="?android:attr/borderlessButtonStyle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="32dp"
+        android:layout_marginBottom="16dp"
+        android:background="@android:color/transparent"
+        android:text="@string/mybrand_10_4_resendPasscode_csm"
+        android:textColor="?attr/text_color"
+        android:textSize="@dimen/text_size_medium"
+        app:layout_constraintBottom_toBottomOf="@+id/layout_display"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="@+id/guideline"
+        app:layout_constraintTop_toTopOf="@+id/layout_display" />
+
+    <LinearLayout
+        android:id="@+id/linearLayout"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:orientation="horizontal"
+        android:weightSum="3"
+        app:layout_constraintEnd_toStartOf="@+id/guideline"
+        app:layout_constraintStart_toStartOf="@+id/layout_display"
+        app:layout_constraintTop_toBottomOf="@+id/layout_display">
+
+        <Button
+            android:id="@+id/btn_numpad1"
+            style="?android:attr/borderlessButtonStyle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="3dp"
+            android:layout_weight="1"
+            android:background="@drawable/btn_numpad_selector"
+            android:fontFamily="@font/gmsansui_regular"
+            android:text="1"
+            android:textColor="?attr/btn_color"
+            android:textSize="@dimen/text_size_large"
+            tools:ignore="HardcodedText" />
+
+        <Button
+            android:id="@+id/btn_numpad2"
+            style="?android:attr/borderlessButtonStyle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="3dp"
+            android:layout_weight="1"
+            android:background="@drawable/btn_numpad_selector"
+            android:fontFamily="@font/gmsansui_regular"
+            android:text="2"
+            android:textColor="?attr/btn_color"
+            android:textSize="@dimen/text_size_large"
+            tools:ignore="HardcodedText"
+            />
+
+        <Button
+            android:id="@+id/btn_numpad3"
+            style="?android:attr/borderlessButtonStyle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="3dp"
+            android:layout_weight="1"
+            android:background="@drawable/btn_numpad_selector"
+            android:fontFamily="@font/gmsansui_regular"
+            android:text="3"
+            android:textColor="?attr/btn_color"
+            android:textSize="@dimen/text_size_large"
+            tools:ignore="HardcodedText" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/linearLayout2"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:weightSum="3"
+        app:layout_constraintEnd_toStartOf="@+id/guideline"
+        app:layout_constraintStart_toStartOf="@+id/include2"
+        app:layout_constraintTop_toBottomOf="@+id/linearLayout">
+
+        <Button
+            android:id="@+id/btn_numpad4"
+            style="?android:attr/borderlessButtonStyle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="3dp"
+            android:layout_weight="1"
+            android:background="@drawable/btn_numpad_selector"
+            android:fontFamily="@font/gmsansui_regular"
+            android:text="4"
+            android:textColor="?attr/btn_color"
+            android:textSize="@dimen/text_size_large"
+            tools:ignore="HardcodedText" />
+
+        <Button
+            android:id="@+id/btn_numpad5"
+            style="?android:attr/borderlessButtonStyle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="3dp"
+            android:layout_weight="1"
+            android:background="@drawable/btn_numpad_selector"
+            android:fontFamily="@font/gmsansui_regular"
+            android:text="5"
+            android:textColor="?attr/btn_color"
+            android:textSize="@dimen/text_size_large"
+            tools:ignore="HardcodedText" />
+
+        <Button
+            android:id="@+id/btn_numpad6"
+            style="?android:attr/borderlessButtonStyle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="3dp"
+            android:layout_weight="1"
+            android:background="@drawable/btn_numpad_selector"
+            android:fontFamily="@font/gmsansui_regular"
+            android:text="6"
+            android:textColor="?attr/btn_color"
+            android:textSize="@dimen/text_size_large"
+            tools:ignore="HardcodedText" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/linearLayout3"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:weightSum="3"
+        app:layout_constraintEnd_toStartOf="@+id/guideline"
+        app:layout_constraintStart_toStartOf="@+id/layout_display"
+        app:layout_constraintTop_toBottomOf="@+id/linearLayout2">
+
+        <Button
+            android:id="@+id/btn_numpad7"
+            style="?android:attr/borderlessButtonStyle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="3dp"
+            android:layout_weight="1"
+            android:background="@drawable/btn_numpad_selector"
+            android:fontFamily="@font/gmsansui_regular"
+            android:text="7"
+            android:textColor="?attr/btn_color"
+            android:textSize="@dimen/text_size_large"
+            tools:ignore="HardcodedText" />
+
+        <Button
+            android:id="@+id/btn_numpad8"
+            style="?android:attr/borderlessButtonStyle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="3dp"
+            android:layout_weight="1"
+            android:background="@drawable/btn_numpad_selector"
+            android:fontFamily="@font/gmsansui_regular"
+            android:text="8"
+            android:textColor="?attr/btn_color"
+            android:textSize="@dimen/text_size_large"
+            tools:ignore="HardcodedText" />
+
+        <Button
+            android:id="@+id/btn_numpad9"
+            style="?android:attr/borderlessButtonStyle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="3dp"
+            android:layout_weight="1"
+            android:background="@drawable/btn_numpad_selector"
+            android:fontFamily="@font/gmsansui_regular"
+            android:text="9"
+            android:textColor="?attr/btn_color"
+            android:textSize="@dimen/text_size_large"
+            tools:ignore="HardcodedText" />
+    </LinearLayout>
+
+
+    <Button
+        android:id="@+id/btn_numpad0"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_margin="3dp"
+        android:background="@drawable/btn_numpad_selector"
+        android:fontFamily="@font/gmsansui_regular"
+        android:text="0"
+        android:textColor="?attr/btn_color"
+        android:textSize="@dimen/text_size_large"
+        app:layout_constraintBottom_toBottomOf="@+id/btn_validate_go"
+        app:layout_constraintEnd_toStartOf="@+id/guideline3"
+        app:layout_constraintStart_toStartOf="@+id/linearLayout3"
+        app:layout_constraintTop_toBottomOf="@+id/linearLayout3" />
+
+    <Button
+        android:id="@+id/btn_validate_go"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_margin="3dp"
+        android:layout_weight="3"
+        android:background="@drawable/btn_numpad_go_selector"
+        android:fontFamily="@font/gmsansui_regular"
+        android:text="Go"
+        android:textAllCaps="false"
+        android:textColor="@color/btn_numpad_go_normal2"
+        android:textSize="@dimen/text_size_large"
+        android:visibility="invisible"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/guideline"
+        app:layout_constraintStart_toStartOf="@+id/guideline3"
+        app:layout_constraintTop_toBottomOf="@+id/linearLayout3"
+        app:layout_constraintVertical_bias="0.0" />
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/layout_display"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        app:layout_constraintEnd_toStartOf="@+id/guideline"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="@+id/validate_title"
+        app:layout_constraintTop_toBottomOf="@+id/validate_subtitle"
+        tools:viewBindingIgnore="false"
+        android:theme="@style/AppTheme">
+
+        <View
+            android:id="@+id/divider1"
+            style="@style/Divider"
+            android:layout_width="0dp"
+            android:layout_marginTop="8dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/validate_input_text" />
+
+        <TextView
+            android:id="@+id/validate_input_text"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:layout_marginEnd="16dp"
+            android:fontFamily="@font/gmsansui_regular"
+            android:gravity="center"
+            android:textAlignment="viewEnd"
+            android:textColor="@color/white"
+            android:textSize="@dimen/text_size_large"
+            app:layout_constraintBottom_toBottomOf="@+id/btn_numpad_back"
+            app:layout_constraintEnd_toStartOf="@+id/btn_numpad_back"
+            app:layout_constraintHorizontal_bias="1.0"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="@+id/btn_numpad_back"
+            tools:ignore="RtlCompat" />
+
+        <Button
+            android:id="@+id/btn_numpad_back"
+            android:layout_width="50dp"
+            android:layout_height="40dp"
+            android:background="?attr/backspaceSelector"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            android:theme="@style/AppTheme"/>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <stevemerollis.codetrial.weather.view.ProgressView
+        android:id="@+id/progress_view_validate"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:visibility="visible"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guideline3"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintGuide_begin="232dp"
+        app:layout_constraintStart_toStartOf="parent" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="text_color">#ffffff</color>
+    <color name="black_shadow">#000000</color>
+    <color name="white">#ffffff</color>
+    <color name="black">#000000</color>
+    <color name="gmBlue">#0a5ffc</color>
+    <color name="gmGray">#0a5ffc</color>
+    <color name="activityBackgroundDefault">#1a1c1d</color>
+    <color name="activityBackground">#000000</color>
+    <color name="activityTextDefault">#FFFFFF</color>
+    <color name="textWarning">#FF0000</color>
+    <color name="btnConfirmPurchase">#CC0FA828</color>
+    <color name="layoutTopBarBackground">#000000</color>
+    <color name="layoutTopBarText">#FFFFFF</color>
+    <color name="default_gray">#919191</color>
+    <color name="btn_numpad_go_normal">#091e03</color>
+    <color name="btn_numpad_go_normal2">#20b74a</color>
+    <color name="btn_numpad_go_pressed">#061400</color>
+    <color name="btn_numpad_go_pressed2">#0d2d03</color>
+    <color name="btn_numpad_go_disabled">#0a0a0a</color>
+    <color name="btn_numpad_go_disabled2">#414344</color>
+    <color name="btn_numpad_go_focused">#091e03</color>
+    <color name="btn_numpad_go_focused2">#ffffff</color>
+
+
+
+
+
+
+
+
+
+
+    <!--    Chevy Colors-->
+    <color name="text_chevy">#919191</color>
+    <color name="btn_chevy">#00adc6</color>
+    <color name="btn_numpad_normal_chevy">#80242a32</color>
+    <color name="btn_numpad_focused_chevy">#242a32</color>
+    <color name="btn_numpad_pressed_chevy">#26f9c31e</color>
+    <color name="btn_numpad_disabled_chevy">#33000000</color>
+
+    <!--    GMC Colors-->
+    <color name="text_gmc">#878787</color>
+    <color name="btn_gmc">#c6a47a</color>
+    <color name="btn_numpad_normal_gmc">#802e3032</color>
+    <color name="btn_numpad_focused_gmc">#33ffffff</color>
+    <color name="btn_numpad_pressed_gmc">#20ff0000</color>
+    <color name="btn_numpad_disabled_gmc">#0a0a0a</color>
+</resources>

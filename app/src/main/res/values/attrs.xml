@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <attr name="text_color" format="color" />
+    <attr name="btn_color" format="color" />
+
+    <attr name="btn_numpad_normal" format="color" />
+    <attr name="btn_numpad_focused" format="color" />
+    <attr name="btn_numpad_pressed" format="color" />
+    <attr name="btn_numpad_disabled" format="color" />
+    <attr name="backspaceSelector" format="reference" />
+
+
+
+
+</resources>

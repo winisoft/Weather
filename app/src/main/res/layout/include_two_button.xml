@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:weightSum="2"
+    tools:viewBindingIgnore="true"
+    android:orientation="horizontal">
+
+    <Button
+        android:id="@+id/btn_purchase"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:text="@string/mybrand_10_2_purchase_csm"
+        android:background="@drawable/btn_selector"
+        android:textSize="@dimen/text_size_large"
+        android:layout_marginRight="20dp"
+        android:textAllCaps="false"
+        android:fontFamily="@font/gmsansui_regular"
+        android:textColor="@color/black" />
+    <Button
+        android:id="@+id/btn_view_terms"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:text="@string/mybrand_9_13_viewTerms_csm"
+        android:background="@drawable/btn_view_terms_normal"
+        android:textSize="@dimen/text_size_large"
+        android:layout_marginLeft="20dp"
+        android:textAllCaps="false"
+        android:fontFamily="@font/gmsansui_regular"
+        android:textColor="?attr/text_color"
+       />
+
+</LinearLayout>

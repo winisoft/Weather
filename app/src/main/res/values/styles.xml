@@ -1,0 +1,71 @@
+<resources>
+    <!-- Base application theme. -->
+    <style name="AppTheme" parent="Theme.AppCompat.Light.NoActionBar">
+        <item name="colorPrimary">#0a5ffc</item>
+        <item name="colorPrimaryDark">#4CAF50</item>
+        <item name="colorAccent">#FF9800</item>
+    </style>
+
+    <style name="Divider">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">2dp</item>
+        <item name="android:background">@color/default_gray</item>
+    </style>
+
+    <style name="MyCheckBox" parent="Theme.AppCompat.NoActionBar">
+        <item name="colorControlNormal">#000000</item>
+        <item name="colorControlActivated">#008000</item>
+        <item name="android:textColor">#FFFF3F3C</item>
+    </style>
+
+    <style name="AppTheme.Dark">
+        <item name="text_color">@color/text_chevy</item>
+        <item name="btn_color">@color/btn_chevy</item>
+        <item name="android:textColor">@color/text_chevy</item>
+        <item name="btn_numpad_normal">@color/btn_numpad_normal_chevy</item>
+        <item name="btn_numpad_focused">@color/btn_numpad_focused_chevy</item>
+        <item name="btn_numpad_pressed">@color/btn_numpad_pressed_chevy</item>
+        <item name="btn_numpad_disabled">@color/btn_numpad_disabled_chevy</item>
+        <item name="backspaceSelector">@drawable/btn_backspace_selector_chevy</item>
+    </style>
+
+    <style name="AppTheme.Light">
+        <item name="text_color">@color/text_gmc</item>
+        <item name="btn_color">@color/btn_gmc</item>
+        <item name="android:textColor">@color/text_chevy</item>
+        <item name="btn_numpad_normal">@color/btn_numpad_normal_gmc</item>
+        <item name="btn_numpad_focused">@color/btn_numpad_focused_gmc</item>
+        <item name="btn_numpad_pressed">@color/btn_numpad_pressed_gmc</item>
+        <item name="btn_numpad_disabled">@color/btn_numpad_disabled_gmc</item>
+        <item name="backspaceSelector">@drawable/btn_backspace_selector_gmc</item>
+
+
+    </style>
+
+    <style name="KeyPadButton">
+        ?android:attr/borderlessButtonStyle
+        <item name="android:borderlessButtonStyle">?attr/borderlessButtonStyle</item>
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_margin">3dp</item>
+        <item name="android:layout_weight">1</item>
+        <item name="android:background">@drawable/btn_numpad_selector</item>
+        <item name="android:fontFamily">@font/gmsansui_regular</item>
+        <item name="android:textColor">?attr/btn_color</item>
+        <item name="android:textSize">@dimen/text_size_large</item>
+    </style>
+
+    <declare-styleable name="KeyPadButton">
+        <attr name="android:text" />
+        <attr name="android:buttonStyle">?android:attr/borderlessButtonStyle</attr>
+        <attr name="android:layout_width">wrap_content</attr>
+        <attr name="android:layout_height">wrap_content</attr>
+        <attr name="android:layout_margin">3dp</attr>
+        <attr name="android:layout_weight">1</attr>
+        <attr name="android:background">@drawable/btn_numpad_selector</attr>
+        <attr name="android:fontFamily">@font/gmsansui_regular</attr>
+        <attr name="android:textColor">?attr/btn_color</attr>
+        <attr name="android:textSize">@dimen/text_size_large</attr>
+    </declare-styleable>
+
+</resources>

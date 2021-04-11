@@ -1,0 +1,324 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:padding="5dp"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:viewBindingIgnore="true"
+    android:background="@color/black">
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/vert_main_divide"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="@dimen/guideline1_margin_end"
+        android:orientation="vertical"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintGuide_begin="650dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/vert_left_divide"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/layout_margin_20dp"
+        android:layout_marginEnd="@dimen/layout_margin_2205dp"
+        android:layout_marginBottom="@dimen/layout_margin_937dp"
+        android:orientation="vertical"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintGuide_begin="89dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <View
+        android:id="@+id/divider1"
+        style="@style/Divider"
+        android:layout_width="0dp"
+        app:layout_constraintEnd_toStartOf="@+id/vert_main_divide"
+        app:layout_constraintStart_toStartOf="@+id/vert_left_divide"
+        app:layout_constraintTop_toBottomOf="@+id/include3" />
+
+    <ImageView
+        android:id="@+id/img_credit_card"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_margin="@dimen/padding_small"
+        android:layout_marginTop="8dp"
+        android:contentDescription="@string/credit_card_description"
+        android:cropToPadding="false"
+        android:paddingLeft="-30dp"
+        android:paddingRight="-20dp"
+        app:layout_constraintStart_toStartOf="@+id/vert_left_divide"
+        app:layout_constraintTop_toBottomOf="@+id/include3"
+        app:srcCompat="@drawable/ic_icn_visa"/>
+
+    <TextView
+        android:id="@+id/tv_credit_card"
+        android:theme="@style/AppTheme"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/layout_margin_16dp"
+        android:fontFamily="@font/gmsansui_regular"
+        android:textColor="@color/text_color"
+        android:textSize="@dimen/text_size_medium"
+        app:layout_constraintBottom_toBottomOf="@+id/img_credit_card"
+        app:layout_constraintStart_toEndOf="@+id/img_credit_card"
+        app:layout_constraintTop_toTopOf="@+id/img_credit_card" />
+
+    <View
+        android:id="@+id/divider2"
+        style="@style/Divider"
+        android:layout_width="0dp"
+        android:layout_marginTop="8dp"
+        app:layout_constraintEnd_toStartOf="@+id/vert_main_divide"
+        app:layout_constraintStart_toStartOf="@+id/vert_left_divide"
+        app:layout_constraintTop_toBottomOf="@+id/tv_credit_card" />
+
+    <TextView
+        android:id="@+id/tv_subtotal_label"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:fontFamily="@font/gmsansui_regular"
+        android:textSize="@dimen/text_size_medium"
+        android:textColor="@color/text_color"
+        app:layout_constraintStart_toStartOf="@+id/img_credit_card"
+        app:layout_constraintTop_toBottomOf="@+id/divider2" />
+
+    <TextView
+        android:id="@+id/tv_taxes_label"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:fontFamily="@font/gmsansui_regular"
+        android:textSize="@dimen/text_size_medium"
+        android:textColor="@color/text_color"
+        app:layout_constraintStart_toStartOf="@+id/img_credit_card"
+        app:layout_constraintTop_toBottomOf="@+id/tv_subtotal_label" />
+
+    <TextView
+        android:id="@+id/tv_discount_label"
+        android:theme="@style/AppTheme"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:fontFamily="@font/gmsansui_regular"
+        android:textSize="@dimen/text_size_medium"
+        android:textColor="@color/text_color"
+        app:layout_constraintStart_toStartOf="@+id/img_credit_card"
+        app:layout_constraintTop_toBottomOf="@+id/tv_taxes_label" />
+
+    <View
+        android:id="@+id/divider5"
+        style="@style/Divider"
+        android:layout_width="0dp"
+        android:layout_marginTop="16dp"
+        app:layout_constraintEnd_toStartOf="@+id/vert_main_divide"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="@+id/vert_left_divide"
+        app:layout_constraintTop_toBottomOf="@+id/tv_promotion_label" />
+
+    <TextView
+        android:id="@+id/tv_total_label"
+        android:theme="@style/AppTheme"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:fontFamily="@font/gmsansui_regular"
+        android:textSize="@dimen/text_size_medium"
+        app:layout_constraintStart_toStartOf="@+id/img_credit_card"
+        app:layout_constraintTop_toBottomOf="@+id/divider5"
+        android:textColor="@color/text_color"/>
+
+    <TextView
+        android:id="@+id/tv_info"
+        android:theme="@style/AppTheme"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_marginTop="16dp"
+        android:layout_marginBottom="16dp"
+        android:fontFamily="@font/gmsansui_regular"
+        android:textSize="@dimen/text_size_medium"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/vert_main_divide"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="@+id/img_credit_card"
+        app:layout_constraintTop_toBottomOf="@+id/tv_total_label"
+        android:textColor="@color/text_color"/>
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guideline8"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/layout_margin_20dp"
+        android:layout_marginEnd="@dimen/layout_margin_1441dp"
+        android:layout_marginBottom="@dimen/layout_margin_937dp"
+        android:orientation="vertical"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintGuide_begin="445dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/tv_subtotal"
+        android:theme="@style/AppTheme"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/gmsansui_regular"
+        android:textAlignment="viewEnd"
+        android:textSize="@dimen/text_size_medium"
+        app:layout_constraintBottom_toBottomOf="@+id/tv_subtotal_label"
+        app:layout_constraintEnd_toStartOf="@+id/vert_main_divide"
+        app:layout_constraintStart_toStartOf="@+id/guideline8"
+        app:layout_constraintTop_toTopOf="@+id/tv_subtotal_label"
+        android:textColor="@color/text_color"/>
+
+    <TextView
+        android:id="@+id/tv_taxes"
+        android:theme="@style/AppTheme"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/gmsansui_regular"
+        android:textAlignment="viewEnd"
+        android:textSize="@dimen/text_size_medium"
+        app:layout_constraintBottom_toBottomOf="@+id/tv_taxes_label"
+        app:layout_constraintEnd_toStartOf="@+id/vert_main_divide"
+        app:layout_constraintStart_toStartOf="@+id/guideline8"
+        app:layout_constraintTop_toTopOf="@+id/tv_taxes_label"
+        android:textColor="@color/text_color"/>
+
+    <TextView
+        android:id="@+id/tv_discount"
+        android:theme="@style/AppTheme"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/gmsansui_regular"
+        android:textAlignment="viewEnd"
+        android:textSize="@dimen/text_size_medium"
+        app:layout_constraintBottom_toBottomOf="@+id/tv_discount_label"
+        app:layout_constraintEnd_toStartOf="@+id/vert_main_divide"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="@+id/guideline8"
+        app:layout_constraintTop_toTopOf="@+id/tv_discount_label"
+        android:textColor="@color/text_color"/>
+
+    <TextView
+        android:id="@+id/tv_promotion_label"
+        android:theme="@style/AppTheme"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:text="@string/monthly_plans_detail"
+        android:textColor="@color/text_color"
+        android:visibility="gone"
+        app:layout_constraintEnd_toStartOf="@+id/guideline8"
+        app:layout_constraintStart_toStartOf="@+id/img_credit_card"
+        app:layout_constraintTop_toBottomOf="@+id/tv_discount_label" />
+
+    <TextView
+        android:id="@+id/tv_total"
+        android:theme="@style/AppTheme"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/gmsansui_regular"
+        android:textAlignment="viewEnd"
+        android:textSize="@dimen/text_size_medium"
+        app:layout_constraintBottom_toBottomOf="@+id/tv_total_label"
+        app:layout_constraintEnd_toStartOf="@+id/vert_main_divide"
+        app:layout_constraintStart_toStartOf="@+id/guideline8"
+        app:layout_constraintTop_toTopOf="@+id/tv_total_label"
+        android:textColor="@color/text_color"/>
+
+    <CheckBox
+        android:id="@+id/cb_terms_quote"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerVertical="true"
+        android:layout_marginStart="8dp"
+        android:background="@drawable/cb_selector"
+        android:button="@null"
+        android:gravity="center_vertical"
+        app:layout_constraintBottom_toBottomOf="@+id/tv_credit_card"
+        app:layout_constraintStart_toEndOf="@+id/vert_main_divide"
+        app:layout_constraintTop_toTopOf="@+id/tv_credit_card" />
+
+    <include
+        android:id="@+id/includes_top_bar_quote"
+        layout="@layout/include_two_button_new"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:layout_marginEnd="32dp"
+        android:layout_marginBottom="8dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="@+id/scrollView2"
+        app:layout_constraintTop_toTopOf="@+id/tv_info"
+        app:layout_constraintVertical_bias="0.0" />
+
+    <include
+        android:id="@+id/includes_top_bar_quote"
+        layout="@layout/include_topbar_black"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <ScrollView
+        android:scrollbars="vertical"
+        android:id="@+id/scrollView2"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginEnd="32dp"
+        android:layout_marginBottom="8dp"
+        app:layout_constraintBottom_toTopOf="@+id/includes_top_bar_quote"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toEndOf="@+id/cb_terms_quote"
+        app:layout_constraintTop_toTopOf="@+id/cb_terms_quote"
+        app:layout_constraintVertical_bias="0.0">
+
+        <TextView
+            android:id="@+id/tv_terms"
+            android:theme="@style/AppTheme"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:fontFamily="@font/gmsansui_regular"
+            android:textSize="@dimen/text_size_medium"
+            android:text="@string/default_terms"
+            android:textColor="@color/text_color"/>
+    </ScrollView>
+
+    <stevemerollis.codetrial.weather.view.ProgressView
+        android:id="@+id/progress_view_quote"
+        layout="@layout/include_spinner"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:visibility="visible"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:visibility="gone" />
+
+    <stevemerollis.codetrial.weather.view.ProgressView
+        android:id="@+id/view_progress_quote"
+        layout="@layout/layout_error"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:visibility="gone"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

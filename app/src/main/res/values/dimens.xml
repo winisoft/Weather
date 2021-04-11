@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <dimen name="fab_margin">16dp</dimen>
+    <dimen name="topbar_height">112dp</dimen>
+    <dimen name="topbar_img_actionbar_width">106dp</dimen>
+    <dimen name="topbar_img_actionbar_height">106dp</dimen>
+    <dimen name="topbar_title_text_size">45sp</dimen>
+    <dimen name="activity_description_text_Size">40sp</dimen>
+    <dimen name="activity_layout_marginLeft">168dp</dimen>
+    <dimen name="activity_layout_marginTop">24dp</dimen>
+    <dimen name="activity_layout_scrollbar_width">140dp</dimen>
+    <dimen name="activity_layout_scrollbar_marginLeft">25dp</dimen>
+    <dimen name="activity_layout_scrollbar_marginTop">20dp</dimen>
+    <dimen name="activity_layout_scrollbar_paddingTop">7dp</dimen>
+    <dimen name="activity_layout_list_width">1200dp</dimen>
+    <dimen name="activity_layout_list_height">659dp</dimen>
+    <dimen name="activity_layout_list_marginLeft">230dp</dimen>
+    <dimen name="activity_layout_list_marginTop">60dp</dimen>
+    <dimen name="list_width">1200dp</dimen>
+    <dimen name="list_item_height">150dp</dimen>
+    <dimen name="list_item_paddingLeft">30dp</dimen>
+    <dimen name="list_item_paddingRight">30dp</dimen>
+    <dimen name="list_item_paddingTop">30dp</dimen>
+    <dimen name="list_item_paddingBottom">30dp</dimen>
+    <dimen name="list_card_img_height">110dp</dimen>
+    <dimen name="list_card_img_width">130dp</dimen>
+    <dimen name="list_item_text_size">45sp</dimen>
+    <dimen name="constraint_padding">20dp</dimen>
+    <dimen name="guideline1_margin_end">1135dp</dimen>
+    <dimen name="guideline1_constraint_begin">1384dp</dimen>
+    <dimen name="layout_margin_20dp">20dp</dimen>
+    <dimen name="layout_margin_2205dp">2205dp</dimen>
+    <dimen name="layout_margin_937dp">937dp</dimen>
+    <dimen name="layout_margin_170dp">170dp</dimen>
+    <dimen name="layout_margin_2375dp">2375dp</dimen>
+    <dimen name="layout_margin_771dp">771dp</dimen>
+    <dimen name="layout_margin_132dp">132dp</dimen>
+    <dimen name="layout_margin_32dp">32dp</dimen>
+    <dimen name="layout_margin_24dp">24dp</dimen>
+    <dimen name="layout_margin_16dp">16dp</dimen>
+    <dimen name="layout_margin_25dp">25dp</dimen>
+    <dimen name="layout_margin_1441dp">1441dp</dimen>
+    <dimen name="layout_margin_910dp">910dp</dimen>
+    <dimen name="text_size_25sp">25sp</dimen>
+    <dimen name="text_size_20sp">20sp</dimen>
+
+    <dimen name="text_size_large">19.64sp</dimen>
+    <dimen name="text_size_medium">15.7sp</dimen>
+
+    <dimen name="std_button_width">120dp</dimen>
+    <dimen name="std_button_height">90dp</dimen>
+    <dimen name="padding_small">10dp</dimen>
+    <dimen name="padding_large">20dp</dimen>
+    <dimen name="text_small">10sp</dimen>
+    <dimen name="text_medium">26sp</dimen>
+    <dimen name="text_large">36sp</dimen>
+
+    <dimen name="text_size_title">60sp</dimen>
+    <dimen name="button_border">4dp</dimen>
+    <dimen name="text_size_medium_small">20sp</dimen>
+
+</resources>
