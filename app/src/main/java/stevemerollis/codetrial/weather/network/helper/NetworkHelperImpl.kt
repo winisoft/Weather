@@ -3,7 +3,6 @@ package stevemerollis.codetrial.weather.network.helper
 
 import stevemerollis.codetrial.weather.async.AsyncResult
 import stevemerollis.codetrial.weather.async.coroutine.CoroutineDsl
-import stevemerollis.codetrial.weather.entity.*
 import stevemerollis.codetrial.weather.network.state.NetStateUtil
 import stevemerollis.codetrial.weather.network.api.OpenWeatherApi
 import stevemerollis.codetrial.weather.util.lo
@@ -11,6 +10,7 @@ import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Deferred
 import kotlinx.coroutines.flow.*
 import kotlinx.coroutines.withContext
+import stevemerollis.codetrial.weather.currently.app.CurrentlyResponse
 import java.io.IOException
 import javax.inject.Inject
 
@@ -22,12 +22,10 @@ constructor(
     private val netStateUtil: NetStateUtil
 ) : NetworkHelper {
 
-
-
     suspend fun <T> (() -> T).call(scope: CoroutineScope)
             : Flow<AsyncResult<T>> = withContext(scope.coroutineContext) {
 
-        if (netStateUtil.isNetworkAvailable().not()) {
+        if (netStateUtil.isNetworkAvailable().value.not()) {
             lo.logE { "Network unavailable! return generic error" }
             flowOf(AsyncResult.Error.Generic)
         } else
@@ -59,5 +57,9 @@ constructor(
 
     companion object {
         val TAG: String = NetworkHelperImpl::class.simpleName.toString()
+    }
+
+    override fun getCurrentWeather(): Flow<NetworkResult<CurrentlyResponse>> {
+        return openWeatherApi.getCurrentWeatherResponse(0.0, 0.0, "imperial", "")
     }
 }

@@ -23,9 +23,10 @@ object Dependencies {
         const val annotation = "androidx.annotation:annotation:${Versions.androidx_annotation_v1_2_0}"
         const val constraintlayout =
             "androidx.constraintlayout:constraintlayout:${Versions.androidx_constraintLayout}"
-        const val fragment = "androidx.fragment:fragment-ktx:${Versions.androidx_fragment_v1_3_0_alpha07}"
+        const val coreKtx = "androidx.core:core-ktx:${Versions.coreKtx_v1_3_2}"
+        const val fragment = "androidx.fragment:fragment-ktx:${Versions.androidx_v1_3_0_alpha07}"
         const val fragmentTesting =
-            "androidx.fragment:fragment-testing:${Versions.androidx_fragment_v1_3_0_alpha07}"
+            "androidx.fragment:fragment-testing:${Versions.androidx_v1_3_0_alpha07}"
         const val activity = "androidx.activity:activity:${Versions.androidX_activity_v1_2_0_alpha07}"
         const val ktx = "androidx.core:core-ktx:${Versions.AndroidX.ktx}"
         const val swiperefreshlayout =
@@ -90,6 +91,12 @@ object Dependencies {
         const val okhttp = "com.squareup.okhttp3:okhttp:${Versions.Libraries.okhttp}"
         const val loggingInterceptor =
             "com.squareup.okhttp3:logging-interceptor:${Versions.Libraries.okhttp}"
+
+        object Moshi {
+            const val core = "com.squareup.moshi:moshi:${Versions.Libraries.moshi}"
+            const val codegen = "com.squareup.moshi:moshi-kotlin-codegen:${Versions.Libraries.moshi}"
+            const val reflection = "com.squareup.moshi:moshi-kotlin:${Versions.Libraries.moshi}"
+        }
     }
 
     object CodeQuality {
@@ -104,13 +111,59 @@ object Dependencies {
         const val jacoco = "org.jacoco:org.jacoco.core:${Versions.Test.jacoco}"
     }
 
+    object Room {
+        val i_runtime = "androidx.room:room-runtime:${Versions.roomVersion}"
+        val i_roomKtx = "androidx.room:room-ktx:${Versions.roomVersion}"
+        val t_testing = "androidx.room:room-testing:${Versions.roomVersion}"
+        val k_compiler = "androidx.room:room-compiler:${Versions.roomVersion}"
+    }
+
+    object Compose {
+        val i_compiler = "androidx.compose.compiler:compiler:${Versions.composeExtVersion}"
+        val i_materialIconsCore = "androidx.compose.material:material-icons-core:${Versions.composeExtVersion}"
+        val i_materialIconsExtended = "androidx.compose.material:material-icons-extended:${Versions.composeExtVersion}"
+        val i_ui = "androidx.compose.ui:ui:${Versions.composeExtVersion}"
+        //tooling support (previews, etc.)
+        val i_uiTooling = "androidx.compose.ui:ui-tooling:${Versions.composeExtVersion}"
+        //foundation (border, background, shapes, image, scroll, animations..)
+        val i_foundation = "androidx.compose.foundation:foundation:${Versions.composeExtVersion}"
+        //material design
+        val i_material = "androidx.compose.material:material:${Versions.composeExtVersion}"
+        // Integration with activities
+        val i_activity = "androidx.activity:activity-compose:${Versions.composeActivity}"
+        // Integration with ViewModels
+        val i_lifecycle = "androidx.lifecycle:lifecycle-viewmodel-compose:${Versions.composeExt2Version}"
+        //integration with observables
+        val i_runtime = "androidx.compose.runtime:runtime-livedata:${Versions.composeExtVersion}"
+        val i_weatherIcons = "br.com.devsrsouza.compose.icons.android:erikflowers-weather-icons:${Versions.composeIconsVersion}"
+        val i_fontAwesome = "br.com.devsrsouza.compose.icons.android:font-awesome:${Versions.composeIconsVersion}"
+        val ati_junit4 = "androidx.compose.ui:ui-test-junit4:${Versions.composeExtVersion}"
+    }
+
+    object Dispatch {
+        const val i_core = "com.rickbusarow.dispatch:dispatch-core:${Versions.coroutines_dispatch}"
+        const val i_lifecycle = "com.rickbusarow.dispatch:dispatch-android-lifecycle:${Versions.coroutines_dispatch}"
+        // This provides :dispatch-android-lifecycle via "api", so you don't need to declare both
+        const val i_lifecycleExt = "com.rickbusarow.dispatch:dispatch-android-lifecycle-extensions:${Versions.coroutines_dispatch}"
+        const val i_viewModel = "com.rickbusarow.dispatch:dispatch-android-viewmodel:${Versions.coroutines_dispatch}"
+        const val ti_coroutinesTest = "org.jetbrains.kotlinx:kotlinx-coroutines-test:${Versions.ktx_v1_4_3}"
+        //only required if junit5 not established otherwise
+        const val ti_test = "com.rickbusarow.dispatch:dispatch-test:${Versions.coroutines_dispatch}"
+        // This provides :dispatch-test via "api"
+        const val ti_junit5 = "com.rickbusarow.dispatch:dispatch-test-junit5:${Versions.coroutines_dispatch}"
+        const val ati_espresso = "com.rickbusarow.dispatch:dispatch-android-espresso:${Versions.coroutines_dispatch}"
+    }
+
     object Util {
         const val timber = "com.jakewharton.timber:timber:${Versions.Libraries.timber}"
+        const val easyPermissions = "com.vmadalin:easypermissions-ktx:${Versions.easyPermissions}"
+        const val dataStore = "androidx.datastore:datastore-preferences:${Versions.dataStore}"
     }
 
     object Image {
         const val glide = "com.github.bumptech.glide:glide:${Versions.Libraries.glide}"
         const val glideCompiler = "com.github.bumptech.glide:compiler:${Versions.Libraries.glide}"
+        const val weatherView = "com.github.MatteoBattilana:WeatherView:${Versions.weatherView_v3_0_0}"
     }
 
     object Test {
@@ -126,6 +179,7 @@ object Dependencies {
     }
 
     object AndroidTest {
+        const val idlingResource = "androidx.test.espresso:espresso-idling-resource:${Versions.AndroidTest.espresso}"
         const val runner = "androidx.test:runner:${Versions.AndroidTest.runner}"
         const val espresso = "androidx.test.espresso:espresso-core:${Versions.AndroidTest.espresso}"
         const val espressoIntents = "androidx.test.espresso:espresso-intents:${Versions.AndroidTest.espresso}"

@@ -8,10 +8,10 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewBinding
 import androidx.lifecycle.LifecycleOwner
 import stevemerollis.codetrial.weather.R
-import stevemerollis.codetrial.weather.async.Model
+import stevemerollis.codetrial.weather.async.ViewModelState
 import stevemerollis.codetrial.weather.databinding.FragmentErrorBinding
 import dagger.hilt.android.AndroidEntryPoint
-import kotlinx.android.synthetic.main.layout_error.*
+import stevemerollis.codetrial.weather.util.lo.logI
 
 
 @AndroidEntryPoint
@@ -27,7 +27,7 @@ class ErrorFragment: Fragment(R.layout.fragment_error), LifecycleOwner {
         ).root
     }
 
-    private fun FragmentErrorBinding.setError(error: Model.Error) = view.apply {
+    private fun FragmentErrorBinding.setError(error: ViewModelState.Error) = view.apply {
         tvErrorTitle.text = getString(error.titleRes)
         tvErrorMessage.text = getString(error.contentRes)
         btnErrorAction.text = getString(error.actionTextRes)
@@ -43,11 +43,11 @@ class ErrorFragment: Fragment(R.layout.fragment_error), LifecycleOwner {
         }
 
         when (error) {
-            is Model.Error.InvalidArgs ->
+            is ViewModelState.Error.Technical ->
                 btnErrorAction.setOnClickListener {
                     //error.action(requireActivity())
                 }
-            is Model.Error.Generic -> {
+            is ViewModelState.Error.Generic -> {
                 btnErrorAction.setOnClickListener {
                     // error.action(requireActivity() as HostActivity)
                 }
@@ -55,9 +55,6 @@ class ErrorFragment: Fragment(R.layout.fragment_error), LifecycleOwner {
                     //error.secondaryAction(requireActivity() as HostActivity)
                 }
             }
-            is Model.Error.Buy009 -> { }
-            is Model.Error.Technical -> { }
-            is Model.Error.Ons551 -> { }
         }
     }
 

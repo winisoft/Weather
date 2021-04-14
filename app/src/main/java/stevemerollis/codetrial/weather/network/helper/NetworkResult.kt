@@ -2,34 +2,29 @@ package stevemerollis.codetrial.weather.network.helper
 
 import retrofit2.Response
 
-sealed class NetworkResult<T> {
+sealed class NetworkResult<out T> {
 
     data class Success<T: Any>(
-        val data: T,
         val response: Response<T>
     ) : NetworkResult<T>()
 
-    sealed class Error(
-        open val response: Response<Nothing>?,
-        open val throwable: Throwable?
-    ): NetworkResult<Nothing>() {
+    sealed class Error: NetworkResult<Nothing>() {
 
-        object Unavailable: Error(null, null)
+        object Unavailable: Error()
 
-        class Api(
-            override val response: Response<Nothing>
-        ): NetworkResult.Error(response, null) {
+        data class ApiError<T: Any>(
+            val response: Response<T>
+        ): Error() {
             val httpCode: HttpCode = HttpCode.from(response.code())
         }
 
-        class Technical(
-            override val throwable: Throwable?
-        ): Error(null, throwable)
+        data class Technical(
+            val throwable: Throwable?
+        ): Error()
 
-        class Generic(
-            override val response: Response<Nothing>? = null,
-            override val throwable: Throwable? = null
-        ): Error(response, throwable)
-
+        data class Generic<T: Any>(
+            val response: Response<T>? = null,
+            val throwable: Throwable? = null
+        ): Error()
     }
 }

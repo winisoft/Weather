@@ -19,7 +19,6 @@ buildscript {
 subprojects {
     repositories {
         mavenCentral()
-        jcenter()
         gradlePluginPortal()
         google()
         maven { url = uri("https://kotlin.bintray.com/kotlinx") }
@@ -29,10 +28,18 @@ subprojects {
 allprojects {
     repositories {
         mavenCentral()
-        jcenter()
         gradlePluginPortal()
         google()
         maven { url = uri("https://kotlin.bintray.com/kotlinx") }
+    }
+}
+
+
+tasks {
+    withType<org.jetbrains.kotlin.gradle.tasks.KotlinCompile>() {
+        kotlinOptions {
+            languageVersion = "1.4"
+        }
     }
 }
 

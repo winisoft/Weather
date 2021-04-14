@@ -1,12 +1,14 @@
 package stevemerollis.codetrial.weather.network
 
 import android.content.Context
+import android.net.ConnectivityManager
 import stevemerollis.codetrial.weather.network.state.NetStateUtil
 import stevemerollis.codetrial.weather.network.converter.BooleanAdapter
 import stevemerollis.codetrial.weather.network.helper.NetworkHelper
 import stevemerollis.codetrial.weather.network.helper.NetworkHelperImpl
 import stevemerollis.codetrial.weather.network.api.OpenWeatherApi
 import com.squareup.moshi.Moshi
+import com.squareup.moshi.kotlin.reflect.KotlinJsonAdapterFactory
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -18,6 +20,9 @@ import dagger.multibindings.IntoMap
 import okhttp3.*
 import retrofit2.Retrofit
 import retrofit2.converter.moshi.MoshiConverterFactory
+import stevemerollis.codetrial.weather.app.AppCoroScope
+import stevemerollis.codetrial.weather.network.state.SimpleNetStateUtil
+import javax.inject.Named
 import javax.inject.Singleton
 
 
@@ -25,14 +30,14 @@ import javax.inject.Singleton
 @InstallIn(SingletonComponent::class)
 class NetworkModule {
 
-    @Provides @Singleton
+    @Provides @Singleton @Named("base_api_url")
     fun provideBaseApiUrl(): String = "https://openweathermap.org/api"
 
     @Provides 
     fun provideMoshi(): Moshi = Moshi
         .Builder().apply {
             add(BooleanAdapter())
-            add(KotlinJson)
+            add(KotlinJsonAdapterFactory())
         }.build()
 
     @Provides 
@@ -40,8 +45,8 @@ class NetworkModule {
 
     @Provides @Singleton
     fun provideNetStateUtil(
-        availableClients: Map<Int, @JvmSuppressWildcards OkHttpClient>
-    ): OkHttpClient {
+        availableClients: Map<Int, @JvmSuppressWildcards NetStateUtil>
+    ): NetStateUtil {
         return availableClients.maxByOrNull { it.key }?.value ?: throw Exception("None were provided as entries")
     }
 
@@ -50,9 +55,10 @@ class NetworkModule {
     @IntKey(0)
     @Singleton
     fun netStateUtil(
-        @ApplicationContext context: Context
+        @ApplicationContext connectivityManager: ConnectivityManager,
+        coroutineScope: AppCoroScope
     ): NetStateUtil =
-        NetStateUtilImpl(context)
+        SimpleNetStateUtil(connectivityManager, coroutineScope)
 
 
     @Provides @Singleton
@@ -82,11 +88,11 @@ class NetworkModule {
     @IntKey(0)
     @Singleton
     fun provideRetrofit(
-            okHttpClient: OkHttpClient,
-            moshi: MoshiConverterFactory,
+        okHttpClient: OkHttpClient,
+        moshi: MoshiConverterFactory,
     ): Retrofit = Retrofit.Builder().apply {
         client(okHttpClient)
-        baseUrl(papiUrl.papiBaseUrl)
+        baseUrl(provideBaseApiUrl())
         addConverterFactory(moshi)
     }.build()
 
@@ -102,13 +108,11 @@ class NetworkModule {
     @Provides
     @IntoMap
     @IntKey(0)
-
     fun providePapi(retrofit: Retrofit): OpenWeatherApi {
         return retrofit.create(OpenWeatherApi::class.java)
     }
 
     @Provides
-
     fun provideNetworkHelperMapping(
             availableClients: Map<Int, @JvmSuppressWildcards NetworkHelper>
     ): NetworkHelper {
@@ -118,7 +122,6 @@ class NetworkModule {
     @Provides
     @IntoMap
     @IntKey(0)
-
     fun provideNetHelper(
         openWeatherApi: OpenWeatherApi,
         netStateUtil: NetStateUtil

@@ -1,7 +1,11 @@
 package stevemerollis.codetrial.weather.currently.app
 
+import kotlinx.coroutines.flow.Flow
+
 
 interface CurrentlyRepository {
 
-    val currentWeather: CurrentlyRe
+    fun getCurrentWeather(): Flow<CurrentlyResponse>
+
+    suspend fun refresh()
 }

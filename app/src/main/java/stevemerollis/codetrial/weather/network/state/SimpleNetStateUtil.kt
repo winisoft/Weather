@@ -27,7 +27,7 @@ constructor(
 ): NetStateUtil {
 
     suspend fun <T: Any> Flow<NetworkResult<T>>.emitNoNetworkOrProceed(): Flow<NetworkResult<*>> = transform {
-        if (isNetworkAvailable(connectivityManager, coroutineScope).value)
+        if (isNetworkAvailable().value)
             emit(it)
         else
             emit(NetworkResult.Error.Unavailable)
@@ -35,10 +35,7 @@ constructor(
 
     private val netTransports: List<Int> = listOf(TRANSPORT_WIFI, TRANSPORT_CELLULAR, TRANSPORT_ETHERNET)
 
-    override suspend fun isNetworkAvailable(
-        connectivityManager: ConnectivityManager,
-        coroutineScope: CoroutineScope
-    ): StateFlow<Boolean> = flow {
+    override suspend fun isNetworkAvailable(): StateFlow<Boolean> = flow {
         connectivityManager.apply {
             val capabilities = activeNetwork?.let { getNetworkCapabilities(it) }
             netTransports

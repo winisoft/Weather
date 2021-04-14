@@ -1,4 +1,5 @@
 import com.android.build.api.variant.VariantFilter
+import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
 
 plugins {
     id("com.android.application")
@@ -92,6 +93,7 @@ android {
         jvmTarget = "11"
         useIR = true
         freeCompilerArgs = freeCompilerArgs.plus(listOf("-Xopt-in=kotlin.RequiresOptIn"))
+        languageVersion = "1.4"
     }
 }
 
@@ -101,9 +103,9 @@ dependencies {
     implementation(Dependencies.AndroidX.annotation)
     implementation(Dependencies.AndroidX.appcompat)
     implementation(Dependencies.AndroidX.constraintlayout)
+    implementation(Dependencies.AndroidX.coreKtx)
     implementation(Dependencies.CodeQuality.leakCanary)
     implementation(Dependencies.Hilt.core)
-//    implementation(Dependencies.Hilt.common)
     implementation(Dependencies.Hilt.android)
     kapt(Dependencies.Hilt.androidCompiler)
     kapt(Dependencies.Hilt.androidx_compiler)
@@ -124,6 +126,8 @@ dependencies {
     implementation(Dependencies.KotlinX.coroutinesAndroid)
     implementation(Dependencies.Network.moshi)
     implementation(Dependencies.Network.moshiCodegen)
+    kapt(Dependencies.Network.moshiCodegen)
+    implementation(Dependencies.Network.Moshi.reflection)
     implementation(Dependencies.Network.moshiAdapters)
     implementation(Dependencies.Network.moshiConverter)
     implementation(Dependencies.Network.retrofit)
@@ -132,38 +136,45 @@ dependencies {
     testImplementation(Dependencies.Test.assertJ)
     testImplementation(Dependencies.Test.junit5_api)
     testRuntimeOnly(Dependencies.Test.junit5_engine)
-    implementation("com.github.MatteoBattilana:WeatherView:3.0.0")
-    implementation(group = "androidx.core", name = "core-ktx", version = "1.3.2")
-    implementation(group = "androidx.test.espresso", name = "espresso-idling-resource", version = "3.4.0-alpha05")
+    implementation(Dependencies.Image.weatherView)
+    implementation(Dependencies.AndroidTest.idlingResource)
     androidTestImplementation(Dependencies.AndroidTest.espresso)
     androidTestImplementation(Dependencies.AndroidTest.runner)
     androidTestImplementation(Dependencies.AndroidTest.espressoIntents)
     androidTestImplementation(Dependencies.AndroidTest.hamcrest)
-    implementation("com.vmadalin:easypermissions-ktx:0.1.0")
+    implementation(Dependencies.Util.easyPermissions)
+    implementation(Dependencies.Util.dataStore)
+    implementation(Dependencies.Room.i_runtime)
+    implementation(Dependencies.Room.i_roomKtx)
+    testImplementation(Dependencies.Room.t_testing)
+    kapt(Dependencies.Room.k_compiler)
+    implementation(Dependencies.Compose.i_compiler)
+    implementation(Dependencies.Compose.i_materialIconsCore)
+    implementation(Dependencies.Compose.i_materialIconsExtended)
+    implementation(Dependencies.Compose.i_ui)
+    implementation(Dependencies.Compose.i_uiTooling)
+    implementation(Dependencies.Compose.i_foundation)
+    implementation(Dependencies.Compose.i_material)
+    implementation(Dependencies.Compose.i_activity)
+    implementation(Dependencies.Compose.i_lifecycle)
+    implementation(Dependencies.Compose.i_runtime)
+    implementation(Dependencies.Compose.i_weatherIcons)
+    implementation(Dependencies.Compose.i_fontAwesome)
+    androidTestImplementation(Dependencies.Compose.ati_junit4)
+    implementation(Dependencies.Dispatch.i_core)
+    implementation(Dependencies.Dispatch.i_lifecycle)
+    implementation(Dependencies.Dispatch.i_lifecycleExt)
+    implementation(Dependencies.Dispatch.i_viewModel)
+    testImplementation(Dependencies.Dispatch.ti_coroutinesTest)
+    testImplementation(Dependencies.Dispatch.ti_test)
+    testImplementation(Dependencies.Dispatch.ti_junit5)
+    androidTestImplementation(Dependencies.Dispatch.ati_espresso)
+}
 
-    val composeExt2Version = "1.0.0-alpha03"
-    val composeExtVersion = "1.0.0-beta04"
-    implementation("androidx.compose.compiler", name = "compiler", version = composeExtVersion)
-    implementation(group = "androidx.compose.ui", name = "ui", version = composeExtVersion)
-    implementation(group = "androidx.compose.material", name = "material", version = composeExtVersion)
-    implementation("androidx.compose.material", "material-icons-core", version = composeExtVersion)
-    implementation("androidx.compose.material", "material-icons-extended", version = composeExtVersion)
-    implementation("androidx.compose.ui:ui:1.0.0-beta04")
-    // Tooling support (Previews, etc.)
-    implementation(group = "androidx.compose.ui", name = "ui-tooling", version = "1.0.0-beta04")
-    // Foundation (Border, Background, Box, Image, Scroll, shapes, animations, etc.)
-    implementation("androidx.compose.foundation", "foundation", version = composeExtVersion)
-    // Material Design
-    implementation("androidx.compose.material", "material", composeExtVersion)
-    // Integration with activities
-    implementation("androidx.activity", "activity-compose", version = "1.3.0-alpha06")
-    // Integration with ViewModels
-    implementation("androidx.lifecycle", "lifecycle-viewmodel-compose", version = composeExt2Version)
-    // Integration with observables
-    implementation("androidx.compose.runtime", "runtime-livedata", version = composeExtVersion)
-    implementation("br.com.devsrsouza.compose.icons.android", "font-awesome", "0.2.0")
-    implementation("br.com.devsrsouza.compose.icons.android", "erikflowers-weather-icons", "0.2.0")
-    // UI Tests
-    androidTestImplementation("androidx.compose.ui:ui-test-junit4:1.0.0-beta04")
-
+tasks {
+    withType<org.jetbrains.kotlin.gradle.tasks.KotlinCompile>() {
+        kotlinOptions {
+            languageVersion = "1.4"
+        }
+    }
 }

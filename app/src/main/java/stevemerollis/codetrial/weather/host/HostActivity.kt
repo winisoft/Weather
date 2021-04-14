@@ -2,20 +2,17 @@ package stevemerollis.codetrial.weather.host
 
 import android.Manifest
 import android.app.Activity
-import android.content.Intent
 import android.os.Bundle
 import androidx.activity.viewModels
-import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.PermissionChecker
 import androidx.fragment.app.FragmentActivity
 import androidx.fragment.app.viewBinding
 import androidx.navigation.NavController
 import androidx.navigation.findNavController
-import androidx.navigation.navOptions
-import stevemerollis.codetrial.weather.distraction.DriverDistractionListener
-import stevemerollis.codetrial.weather.host.HostViewModel
 import dagger.hilt.android.AndroidEntryPoint
+import dagger.hilt.android.EntryPointAccessors
 import stevemerollis.codetrial.weather.R
+import stevemerollis.codetrial.weather.activity.FragmentInjectorEntryPoint
 import stevemerollis.codetrial.weather.databinding.ActivityHostBinding
 import stevemerollis.codetrial.weather.util.lo.logD
 
@@ -28,6 +25,7 @@ class HostActivity : FragmentActivity() {
     private val navController: NavController by lazy { findNavController(R.id.nav_host) }
 
     override fun onCreate(savedInstanceState: Bundle?) {
+        val entryPoint = EntryPointAccessors.fromApplication(this, FragmentInjectorEntryPoint::class.java)
         super.onCreate(savedInstanceState)
         logD { "$TAG: launched" }
         viewBinding?.apply {

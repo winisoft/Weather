@@ -7,6 +7,7 @@ object Versions {
 
     const val kotlin_v1_4_32 = "1.4.32"
     const val ktx_v1_4_3: String = "1.4.3"
+    const val coreKtx_v1_3_2: String = "1.3.2"
 
     const val detekt_v1_9_1 = "1.9.1"
     const val ktLint_v9_2_1 = "9.2.1"
@@ -15,7 +16,7 @@ object Versions {
     const val androidx_appcompat_v1_2_0 = "1.2.0"
     const val androidx_annotation_v1_2_0 = "1.2.0"
     const val androidx_constraintLayout = "2.0.0-beta8"
-    const val androidx_fragment_v1_3_0_alpha07 = "1.3.0-alpha07"
+    const val androidx_v1_3_0_alpha07 = "1.3.0-alpha07"
     const val androidx_recyclerView = "1.2.0-alpha05"
     const val androidx_swipeRefreshLayout_v1_1_0 = "1.1.0"
 
@@ -23,8 +24,19 @@ object Versions {
 
     const val codeQuality_leakCanary_v2_7 = "2.7"
     const val codeQuality_lint_v26_6_3 = "26.6.3"
+    const val coroutines_dispatch = "1.0.0-beta08"
 
+    const val composeExt2Version = "1.0.0-alpha03"
+    const val composeExtVersion = "1.0.0-beta04"
+    const val composeIconsVersion = "0.2.0"
+    const val composeActivity = "1.3.0-alpha06"
+
+    const val roomVersion = "2.2.6"
+    const val easyPermissions = "0.1.0"
+    const val dataStore = "1.0.0-alpha08"
     const val material = "1.1.0"
+
+    const val weatherView_v3_0_0 = "3.0.0"
 
     object AndroidX: Map<String, String> by mapOf() {
         const val ktx = "1.3.1"

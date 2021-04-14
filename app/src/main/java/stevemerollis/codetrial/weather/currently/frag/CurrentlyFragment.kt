@@ -1,24 +1,58 @@
 package stevemerollis.codetrial.weather.currently.frag
 
-import android.content.Context
-import android.os.Bundle
-import android.view.View
-import androidx.fragment.app.Fragment
+import android.graphics.drawable.Drawable
+import android.widget.LinearLayout
 import androidx.fragment.app.viewModels
+import com.github.matteobattilana.weather.WeatherView
 import dagger.hilt.android.AndroidEntryPoint
+import dagger.hilt.android.scopes.ActivityScoped
+import kotlinx.coroutines.ExperimentalCoroutinesApi
+import kotlinx.coroutines.FlowPreview
+import kotlinx.coroutines.flow.*
 import stevemerollis.codetrial.weather.R
+import stevemerollis.codetrial.weather.currently.CurrentlyContract
 import stevemerollis.codetrial.weather.currently.vm.CurrentlyViewModel
-import stevemerollis.codetrial.weather.databinding.FragmentCurrentlyBinding
-import stevemerollis.codetrial.weather.fragment.viewBinding
+import stevemerollis.codetrial.weather.fragment.UI
+import stevemerollis.codetrial.weather.fragment.WeatherFragment
+import stevemerollis.codetrial.weather.view.*
+import stevemerollis.codetrial.weather.viewmodel.WeatherViewModel
+import javax.inject.Inject
 
+@ActivityScoped
 @AndroidEntryPoint
-class CurrentlyFragment: Fragment(R.layout.fragment_currently) {
+@FlowPreview
+@ExperimentalCoroutinesApi
+class CurrentlyFragment
+@Inject
+constructor(
+    val weatherView: WeatherView
+) : WeatherFragment<
+        CurrentlyFragment.CurrentlyModel,
+        CurrentlyViewModel,
+        CurrentlyFragment.Events
+>(R.layout.fragment_currently) {
 
-    private val viewModel: CurrentlyViewModel by viewModels()
-    private val viewBinding: FragmentCurrentlyBinding by viewBinding(FragmentCurrentlyBinding::bind)
+    override val userIntentFlow: Flow<UI.Event> = merge(flowOf(Events.ShowForecast))
+        .onEach { vm.processIntent(it) }
 
-    override fun onAttach(context: Context) {
-        super.onAttach(context)
+    sealed class Events: UI.Event {
+        object ShowForecast: Events()
+        object Initial: Events()
+        object Retry: Events()
+    }
+
+    data class CurrentlyModel(
+        val condition: String,
+        val icon: Drawable,
+        val wind: String,
+        val clouds: String,
+        val visibility: String,
+        val location: String,
+        val reportedAt: String
+    )
+
+    override fun <M> render(model: M) {
+
     }
 
 

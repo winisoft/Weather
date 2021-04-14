@@ -40,6 +40,7 @@
     <androidx.core.widget.NestedScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:fillViewport="true"
         app:behavior_overlapTop="32dp"
         app:layout_behavior="com.google.android.material.appbar.AppBarLayout$ScrollingViewBehavior"
         tools:ignore="SpeakableTextPresentCheck">
@@ -52,10 +53,11 @@
 
             <androidx.fragment.app.FragmentContainerView
                 android:id="@+id/nav_host"
-                android:name="androidx.navigation.fragment.NavHostFragment"
+                android:name="stevemerollis.codetrial.weather.activity.WeatherNavHostFragment"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 app:defaultNavHost="true"
+                app:navGraph="@navigation/nav_graph"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
