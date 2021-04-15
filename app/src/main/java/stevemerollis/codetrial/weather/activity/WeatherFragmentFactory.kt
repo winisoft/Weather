@@ -10,7 +10,7 @@ import javax.inject.Singleton
 import kotlin.reflect.KClass
 
 
-@Singleton
+@ActivityScoped
 class WeatherFragmentFactory
 @Inject constructor(
     private val providerMap: Map<Class<out Fragment>, @JvmSuppressWildcards Provider<Fragment>>

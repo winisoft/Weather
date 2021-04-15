@@ -8,22 +8,21 @@ import androidx.lifecycle.lifecycleScope
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.collect
+import kotlinx.coroutines.flow.launchIn
+import kotlinx.coroutines.flow.onEach
+import stevemerollis.codetrial.weather.viewmodel.WeatherViewModel
 
 @ExperimentalCoroutinesApi
-abstract class WeatherFragment<M: Any, V: StateFlow<UI.State>, I: UI.Event>
+abstract class WeatherFragment<V: WeatherViewModel, I: UI.Intention>
 constructor(layoutRes: Int)
 : Fragment(layoutRes), UI {
 
-    val vm: V by viewModels()
-
-    abstract override fun <M> render(model: M)
+    override val vm: WeatherViewModel by viewModels()
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        lifecycleScope.launchWhenResumed {
-            vm.collect {
-                render(it)
-            }
-        }
+        vm.state
+            .onEach { render(it) }
+            .launchIn(lifecycleScope)
     }
 }

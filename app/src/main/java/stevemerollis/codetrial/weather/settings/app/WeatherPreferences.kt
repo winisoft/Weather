@@ -3,8 +3,13 @@ package stevemerollis.codetrial.weather.settings.app
 import androidx.datastore.core.DataStore
 import androidx.datastore.preferences.core.Preferences
 import kotlinx.coroutines.flow.Flow
+import stevemerollis.codetrial.weather.api.options.UnitsOfMeasure
 
-interface PrefsStore {
+interface WeatherPreferences {
+
+    fun getUnitOfMeasure(): UnitsOfMeasure
+
+    suspend fun setUnitOfMeasure(uom: UnitsOfMeasure)
 
     fun isNightMode(): Flow<Boolean>
 

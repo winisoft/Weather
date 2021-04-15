@@ -7,7 +7,7 @@ sealed class Model<out T> {
     /**
      * Success response with body
      */
-    class Success<out T>(val model: T): Model<T>() {
+    class Success<out T>(val viewProperties: T): Model<T>() {
         override fun toString(): String = "Success"
     }
 

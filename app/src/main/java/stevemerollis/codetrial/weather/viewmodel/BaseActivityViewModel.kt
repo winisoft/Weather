@@ -2,14 +2,11 @@ package stevemerollis.codetrial.weather.viewmodel
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import dagger.hilt.android.scopes.ViewModelScoped
-import kotlinx.coroutines.flow.combine
 import kotlinx.coroutines.launch
-import stevemerollis.codetrial.weather.settings.app.PrefsStore
-import javax.inject.Inject
+import stevemerollis.codetrial.weather.settings.app.WeatherPreferences
 
 abstract class BaseActivityViewModel(
-    private val prefsStore: PrefsStore,
+    private val prefsStore: WeatherPreferences,
 ) : ViewModel() {
 
 

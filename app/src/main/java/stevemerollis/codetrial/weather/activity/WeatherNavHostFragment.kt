@@ -2,10 +2,11 @@ package stevemerollis.codetrial.weather.activity
 
 import android.content.Context
 import androidx.navigation.fragment.NavHostFragment
+import dagger.hilt.android.scopes.ActivityScoped
 import javax.inject.Inject
 import javax.inject.Singleton
 
-@Singleton
+@ActivityScoped
 class WeatherNavHostFragment
 @Inject
 constructor(

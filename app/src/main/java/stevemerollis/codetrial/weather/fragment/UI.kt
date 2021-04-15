@@ -1,19 +1,20 @@
 package stevemerollis.codetrial.weather.fragment
 
+import androidx.viewbinding.ViewBinding
+import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.flow.Flow
-import stevemerollis.codetrial.weather.async.AsyncResult
+import stevemerollis.codetrial.weather.viewmodel.WeatherViewModel
 
+@OptIn(ExperimentalCoroutinesApi::class)
 interface UI {
 
-    val userIntentFlow: Flow<Event>
+    val vm: WeatherViewModel
 
-    fun <M> render(model: M)
+    fun <V: ViewBinding, T: Any> V.render(viewProperties: T)
 
-    sealed class State {
-        object Init: State()
-        object Loading: State()
-        data class Display<M>(val model: M): State()
-    }
+    val intentionFlow: Flow<Intention>
 
-    interface Event
+    fun render(state: WeatherViewModel.ViewModelState)
+
+    interface Intention
 }

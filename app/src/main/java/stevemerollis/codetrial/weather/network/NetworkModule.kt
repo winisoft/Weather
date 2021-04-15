@@ -6,7 +6,7 @@ import stevemerollis.codetrial.weather.network.state.NetStateUtil
 import stevemerollis.codetrial.weather.network.converter.BooleanAdapter
 import stevemerollis.codetrial.weather.network.helper.NetworkHelper
 import stevemerollis.codetrial.weather.network.helper.NetworkHelperImpl
-import stevemerollis.codetrial.weather.network.api.OpenWeatherApi
+import stevemerollis.codetrial.weather.api.OpenWeatherApi
 import com.squareup.moshi.Moshi
 import com.squareup.moshi.kotlin.reflect.KotlinJsonAdapterFactory
 import dagger.Module
@@ -55,10 +55,10 @@ class NetworkModule {
     @IntKey(0)
     @Singleton
     fun netStateUtil(
-        @ApplicationContext connectivityManager: ConnectivityManager,
+        @ApplicationContext context: Context,
         coroutineScope: AppCoroScope
     ): NetStateUtil =
-        SimpleNetStateUtil(connectivityManager, coroutineScope)
+        SimpleNetStateUtil(context, coroutineScope)
 
 
     @Provides @Singleton

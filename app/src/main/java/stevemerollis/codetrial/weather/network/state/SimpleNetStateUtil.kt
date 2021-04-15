@@ -22,9 +22,12 @@ import javax.inject.Singleton
 class SimpleNetStateUtil
 @Inject
 constructor(
-        @ApplicationContext private val connectivityManager: ConnectivityManager,
+        @ApplicationContext private val context: Context,
         private val coroutineScope: CoroutineScope
 ): NetStateUtil {
+
+    private val connectivityManager: ConnectivityManager =
+        context.getSystemService(CONNECTIVITY_SERVICE) as ConnectivityManager
 
     suspend fun <T: Any> Flow<NetworkResult<T>>.emitNoNetworkOrProceed(): Flow<NetworkResult<*>> = transform {
         if (isNetworkAvailable().value)

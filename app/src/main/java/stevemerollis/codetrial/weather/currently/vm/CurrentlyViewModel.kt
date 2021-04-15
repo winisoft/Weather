@@ -1,23 +1,13 @@
 package stevemerollis.codetrial.weather.currently.vm
 
-import android.util.Log
-import androidx.lifecycle.ViewModel
-import androidx.lifecycle.viewModelScope
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.FlowPreview
-import kotlinx.coroutines.channels.BroadcastChannel
-import kotlinx.coroutines.channels.Channel
 import kotlinx.coroutines.flow.*
-import kotlinx.coroutines.withContext
 import stevemerollis.codetrial.weather.async.Model
-import stevemerollis.codetrial.weather.currently.app.CurrentlyResponse
 import stevemerollis.codetrial.weather.currently.frag.CurrentlyFragment
-import stevemerollis.codetrial.weather.fragment.FragmentKey
 import stevemerollis.codetrial.weather.fragment.UI
-import stevemerollis.codetrial.weather.util.lo.logD
 import stevemerollis.codetrial.weather.viewmodel.WeatherViewModel
-import xkotlin.coroutines.flow.flatMapFirst
 import javax.inject.Inject
 
 @FlowPreview
@@ -30,33 +20,32 @@ constructor(
     private val refreshCurrentWeather: RefreshCurrentWeather
 ): WeatherViewModel() {
 
-    suspend fun processIntent(intent: UI.Event) = _intentChannel.send(intent)
-
-    override val value: UI.State = _state.value
-        suspend fun get() = withContext(viewModelScope.coroutineContext) {
-            _intentChannel.asFlow()
-            .transform {
-                emit(UI.State.Loading)
-                emit(it)
-            }.filterIsInstance<CurrentlyFragment.Events.Initial>()
-            .sendSingleEvent()
-            .map {
-                when (it) {
-                    is Model.Success -> UI.State.Display(it.model)
-                    is Model.Error -> UI.State.Display(it.model)
-                }
-            }.onEach {
-                state = it
+    override suspend fun Flow<UI.Intention>.onIntentionReceived(): StateFlow<State> = flow {
+        emit(State.Loading)
+        map {
+            when (it) {
+                is CurrentlyFragment.Intentions.Retry -> receivedRetry()
+                else -> receivedLaunchForecast()
             }
-            .catch { }
-            .stateIn(viewModelScope)
         }
+    }.stateIn(viewModelScope)
 
-    private fun Flow<UI.Event>.sendSingleEvent()
-    : Flow<Model<CurrentlyViewProperties>> = getCurrentWeather()
+    sealed class State: ViewModelState {
+        object Init: State()
+        object Loading: State()
+        data class Display<M>(val model: M): State()
+    }
 
-    private fun <T : UI.Event> Flow<T>.logIntent() = onEach {
-        logD { "$TAG: Intent: $it" }
+    private suspend fun receivedRetry() = getCurrentWeather()
+        .map {
+            when (it) {
+                is Model.Success -> State.Display(it.viewProperties)
+                is Model.Error -> State.Display(it.model as Model.Error)
+            }
+        }.single()
+
+    private fun receivedLaunchForecast() {
+
     }
 
     companion object {

@@ -1,13 +1,9 @@
 package stevemerollis.codetrial.weather.host
 
-import stevemerollis.codetrial.weather.host.HostViewModel.HostUiFlow
 import androidx.lifecycle.SavedStateHandle
 import androidx.lifecycle.ViewModel
 import dagger.hilt.android.lifecycle.HiltViewModel
-import kotlinx.coroutines.flow.StateFlow
-import kotlinx.coroutines.flow.combine
-import stevemerollis.codetrial.weather.settings.SharedPrefs
-import stevemerollis.codetrial.weather.settings.app.PrefsStore
+import stevemerollis.codetrial.weather.settings.app.WeatherPreferences
 import javax.inject.Inject
 
 
@@ -15,8 +11,7 @@ import javax.inject.Inject
 class HostViewModel
 @Inject
 constructor(
-        val sharedPrefs: PrefsStore,
-        val savedState: SavedStateHandle
+    val savedState: SavedStateHandle
 ): ViewModel() {
 
 //    private val uiModelFlow = combine(

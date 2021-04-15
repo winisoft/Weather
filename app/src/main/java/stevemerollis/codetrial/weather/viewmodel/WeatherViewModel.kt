@@ -2,33 +2,34 @@
 
 package stevemerollis.codetrial.weather.viewmodel
 
-import androidx.lifecycle.ViewModel
-import androidx.lifecycle.viewModelScope
 import dagger.hilt.android.scopes.ViewModelScoped
+import dispatch.android.viewmodel.DispatchViewModel
 import kotlinx.coroutines.ExperimentalCoroutinesApi
-import kotlinx.coroutines.channels.BroadcastChannel
 import kotlinx.coroutines.channels.Channel
-import kotlinx.coroutines.channels.Channel.Factory.CONFLATED
-import kotlinx.coroutines.flow.MutableStateFlow
-import kotlinx.coroutines.flow.StateFlow
-import stevemerollis.codetrial.weather.async.ViewModelState
+import kotlinx.coroutines.flow.*
+import kotlinx.coroutines.launch
 import stevemerollis.codetrial.weather.fragment.UI
-import kotlin.coroutines.CoroutineContext
 
 @ExperimentalCoroutinesApi
 @ViewModelScoped
 abstract class WeatherViewModel
-constructor(
-    protected val _state: MutableStateFlow<UI.State> = MutableStateFlow(UI.State.Init)
-): ViewModel(), StateFlow<UI.State> by _state {
+: DispatchViewModel() {
 
-    var state: UI.State
-        get() = this.value
-        set(value) { _state.value = value }
+    val intentChannel = Channel<UI.Intention>(capacity = Channel.UNLIMITED)
+    protected val _state: MutableStateFlow<ViewModelState> = MutableStateFlow(ViewModelState.Init)
+    val state: StateFlow<ViewModelState> get() = _state
 
-    protected val _intentChannel = BroadcastChannel<UI.Event>(capacity = Channel.BUFFERED)
+    abstract suspend fun Flow<UI.Intention>.onIntentionReceived(): StateFlow<ViewModelState>
 
-    fun eventChannel() = BroadcastChannel<UI.Event>(capacity = CONFLATED)
+    interface ViewModelState {
+        object Init: ViewModelState
+    }
 
-
+    init {
+        viewModelScope.launch {
+            intentChannel
+                .consumeAsFlow()
+                .onIntentionReceived()
+        }
+    }
 }

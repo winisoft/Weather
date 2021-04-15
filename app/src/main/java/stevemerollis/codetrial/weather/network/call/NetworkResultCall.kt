@@ -1,4 +1,4 @@
-package stevemerollis.codetrial.weather.network.adapter.call
+package stevemerollis.codetrial.weather.network.call
 
 import okhttp3.Request
 import okio.Timeout
@@ -25,11 +25,11 @@ constructor(
                 response.run {
                     when {
                         response.isSuccessful
-                        -> NetworkResult.Success(response)
+                            -> NetworkResult.Success(response)
                         errorBody()?.contentLength()?.let { it > 0L } ?: false
-                        -> NetworkResult.Error.ApiError(response)
+                            -> NetworkResult.Error.ApiError(response)
                         else
-                        -> NetworkResult.Error.Generic(response, null)
+                            -> NetworkResult.Error.Generic(response, null)
                     }.let {
                         callback.onResponse(this@NetworkResultCall, Response.success(it))
                     }
@@ -37,12 +37,12 @@ constructor(
             }
 
             override fun onFailure(call: Call<S>, throwable: Throwable) {
-                callback.onResponse(
-                    this@NetworkResultCall,
-                    Response.success(if (throwable is IOException)
-                        NetworkResult.Error.Technical(throwable)
-                    else
-                        NetworkResult.Error.Generic<Nothing>(null, throwable)
+                callback.onResponse(this@NetworkResultCall,
+                    Response.success(
+                        if (throwable is IOException)
+                            NetworkResult.Error.Technical(throwable)
+                        else
+                            NetworkResult.Error.Generic<Nothing>(null, throwable)
                     )
                 )
             }

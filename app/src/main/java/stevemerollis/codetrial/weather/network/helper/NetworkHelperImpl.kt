@@ -4,7 +4,7 @@ package stevemerollis.codetrial.weather.network.helper
 import stevemerollis.codetrial.weather.async.AsyncResult
 import stevemerollis.codetrial.weather.async.coroutine.CoroutineDsl
 import stevemerollis.codetrial.weather.network.state.NetStateUtil
-import stevemerollis.codetrial.weather.network.api.OpenWeatherApi
+import stevemerollis.codetrial.weather.api.OpenWeatherApi
 import stevemerollis.codetrial.weather.util.lo
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Deferred

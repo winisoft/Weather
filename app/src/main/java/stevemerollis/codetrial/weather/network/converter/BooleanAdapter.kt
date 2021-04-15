@@ -1,19 +1,16 @@
 package stevemerollis.codetrial.weather.network.converter
 
 import com.squareup.moshi.FromJson
-import com.squareup.moshi.JsonQualifier
 import com.squareup.moshi.JsonReader
 import com.squareup.moshi.ToJson
 
 
-@JsonQualifier
-@Retention(AnnotationRetention.RUNTIME)
-annotation class EnsuresBoolean
+
 
 class BooleanAdapter {
 
     @FromJson
-    @EnsuresBoolean
+    @BooleanAdapting
     fun fromJson(jsonReader: JsonReader): Boolean {
 
         return when (jsonReader.peek()) {
@@ -25,7 +22,7 @@ class BooleanAdapter {
     }
 
     @ToJson
-    fun toJson(@EnsuresBoolean value: Boolean): String {
+    fun toJson(@BooleanAdapting value: Boolean): String {
         return value.toString()
     }
 

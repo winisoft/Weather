@@ -7,6 +7,7 @@ plugins {
     id("kotlin-kapt")
     id("kotlin-parcelize")
     id("dagger.hilt.android.plugin")
+    //id("com.google.protobuf")
 }
 
 android {
@@ -169,10 +170,12 @@ dependencies {
     testImplementation(Dependencies.Dispatch.ti_test)
     testImplementation(Dependencies.Dispatch.ti_junit5)
     androidTestImplementation(Dependencies.Dispatch.ati_espresso)
+    implementation("androidx.datastore:datastore-core:1.0.0-alpha08")
+    implementation("com.google.protobuf:protobuf-javalite:3.11.0")
 }
 
 tasks {
-    withType<org.jetbrains.kotlin.gradle.tasks.KotlinCompile>() {
+    withType<KotlinCompile>() {
         kotlinOptions {
             languageVersion = "1.4"
         }

@@ -1,4 +1,4 @@
-package stevemerollis.codetrial.weather.network.api
+package stevemerollis.codetrial.weather.api.options
 
 class RequestOptions(
     /**
