@@ -25,7 +25,9 @@ class HostActivity : FragmentActivity() {
     private val navController: NavController by lazy { findNavController(R.id.nav_host) }
 
     override fun onCreate(savedInstanceState: Bundle?) {
-        val entryPoint = EntryPointAccessors.fromApplication(this, FragmentInjectorEntryPoint::class.java)
+        EntryPointAccessors.fromApplication(this, FragmentInjectorEntryPoint::class.java)
+            .getFragmentInjector()
+            .apply { supportFragmentManager.fragmentFactory = this }
         super.onCreate(savedInstanceState)
         logD { "$TAG: launched" }
         viewBinding?.apply {

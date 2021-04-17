@@ -8,10 +8,16 @@ import dagger.Module
 import dagger.hilt.InstallIn
 import dagger.hilt.components.SingletonComponent
 import dagger.multibindings.IntoMap
+import dispatch.core.DefaultCoroutineScope
+import dispatch.core.IOCoroutineScope
+import dispatch.core.MainCoroutineScope
+import dispatch.core.MainImmediateCoroutineScope
 import stevemerollis.codetrial.weather.activity.WeatherFragmentFactory
 import stevemerollis.codetrial.weather.activity.WeatherNavHostFragment
 import stevemerollis.codetrial.weather.currently.frag.CurrentlyFragment
 import stevemerollis.codetrial.weather.fragment.FragmentKey
+import stevemerollis.codetrial.weather.settings.app.PreferenceManager
+import stevemerollis.codetrial.weather.settings.app.Prefs
 
 @Module
 @InstallIn(SingletonComponent::class)

@@ -35,6 +35,10 @@ object Dependencies {
             "androidx.recyclerview:recyclerview:${Versions.androidx_recyclerView}"
     }
 
+    object ProtoBuf {
+        const val gradlePlugin = "com.google.protobuf:protobuf-gradle-plugin:${Versions.protobuf_v0_8_15}"
+    }
+
     object Jetpack {
 
         object Lifecycle {

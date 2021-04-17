@@ -8,6 +8,7 @@ import kotlinx.coroutines.channels.BroadcastChannel
 import kotlinx.coroutines.channels.Channel
 import kotlinx.coroutines.flow.*
 import kotlinx.coroutines.withContext
+import stevemerollis.codetrial.weather.api.options.UnitsOfMeasure
 import stevemerollis.codetrial.weather.network.helper.NetworkHelper
 import stevemerollis.codetrial.weather.network.helper.NetworkResult
 import stevemerollis.codetrial.weather.util.lo.logD
@@ -31,7 +32,7 @@ constructor(
             networkHelper.getCurrentWeather()
         }
 
-    override suspend fun getCurrentWeather(): Flow<NetworkResult<CurrentlyResponse>> {
+    override suspend fun getCurrentWeather(appId: String, uom: UnitsOfMeasure): Flow<NetworkResult<CurrentlyResponse>> {
 
         return getCurrentWeatherFromRemote()
 

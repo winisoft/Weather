@@ -68,12 +68,8 @@ object CoroutineDsl {
      * Launches an async coroutine on the default background thread
      */
     suspend fun <T> bgTask(
-            coroutineScope: CoroutineScope = CoroutineScope(Job()),
            block: suspend CoroutineScope.() -> T)
     : T = startTask(bg, block)
-
-
-    suspend fun <T> bgTask(block: suspend CoroutineScope.() -> T): T = startTask(bg, block)
 
     /**
      * Starts an async coroutine on the default thread

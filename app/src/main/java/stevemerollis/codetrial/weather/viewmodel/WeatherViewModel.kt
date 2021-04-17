@@ -4,7 +4,10 @@ package stevemerollis.codetrial.weather.viewmodel
 
 import dagger.hilt.android.scopes.ViewModelScoped
 import dispatch.android.viewmodel.DispatchViewModel
+import dispatch.core.DefaultCoroutineScope
+import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.ExperimentalCoroutinesApi
+import kotlinx.coroutines.cancel
 import kotlinx.coroutines.channels.Channel
 import kotlinx.coroutines.flow.*
 import kotlinx.coroutines.launch
@@ -15,21 +18,35 @@ import stevemerollis.codetrial.weather.fragment.UI
 abstract class WeatherViewModel
 : DispatchViewModel() {
 
-    val intentChannel = Channel<UI.Intention>(capacity = Channel.UNLIMITED)
-    protected val _state: MutableStateFlow<ViewModelState> = MutableStateFlow(ViewModelState.Init)
-    val state: StateFlow<ViewModelState> get() = _state
+    fun mutate(intention: Intention): StateFlow<State> {
+        return intentChannel.apply { offer(intention) }.run { stateFlow }
+    }
 
-    abstract suspend fun Flow<UI.Intention>.onIntentionReceived(): StateFlow<ViewModelState>
+    val intentChannel: Channel<Intention> = Channel(Channel.UNLIMITED)
 
-    interface ViewModelState {
-        object Init: ViewModelState
+    val stateFlow: StateFlow<State> = MutableStateFlow(State.Init)
+        suspend fun get() = intentChannel
+            .consumeAsFlow()
+            .transform<Intention, State> {
+                emit(getResult(it))
+            }.onStart {
+                emit(State.Loading)
+            }.stateIn(viewModelScope)
+
+    abstract suspend fun getResult(intention: Intention): State
+
+    abstract fun <T> map(result: UseCase.Result<T>): State
+
+    interface Intention
+
+    interface State {
+        object Init: State
+        object Loading: State
     }
 
     init {
         viewModelScope.launch {
-            intentChannel
-                .consumeAsFlow()
-                .onIntentionReceived()
+            stateFlow::value.get()
         }
     }
 }

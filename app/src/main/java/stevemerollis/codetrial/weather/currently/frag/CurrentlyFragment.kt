@@ -1,5 +1,7 @@
 package stevemerollis.codetrial.weather.currently.frag
 
+import android.content.Context
+import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewBinding
 import androidx.viewbinding.ViewBinding
 import com.github.matteobattilana.weather.WeatherView
@@ -9,9 +11,9 @@ import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.FlowPreview
 import kotlinx.coroutines.flow.*
 import stevemerollis.codetrial.weather.R
-import stevemerollis.codetrial.weather.async.Model
+import stevemerollis.codetrial.weather.async.UseResult
 import stevemerollis.codetrial.weather.currently.vm.CurrentlyViewModel
-import stevemerollis.codetrial.weather.currently.vm.CurrentlyViewProperties
+import stevemerollis.codetrial.weather.currently.view.CurrentlyLayoutModel
 import stevemerollis.codetrial.weather.databinding.FragmentCurrentlyBinding
 import stevemerollis.codetrial.weather.fragment.UI
 import stevemerollis.codetrial.weather.fragment.WeatherFragment
@@ -24,31 +26,24 @@ import javax.inject.Inject
 @ExperimentalCoroutinesApi
 class CurrentlyFragment
 @Inject
-constructor(
-    val weatherView: WeatherView
-) : WeatherFragment<CurrentlyViewModel, CurrentlyFragment.Intentions>
-(R.layout.fragment_currently) {
+constructor()
+: WeatherFragment
+<FragmentCurrentlyBinding>
+(FragmentCurrentlyBinding::bind) {
 
-    val viewBinding: FragmentCurrentlyBinding? by viewBinding(FragmentCurrentlyBinding::bind)
-
-    override val intentionFlow: Flow<UI.Intention> =
-        merge(flowOf(Intentions.Retry))
-        .onEach { vm.intentChannel.offer(it) }
-
-    sealed class Intentions: UI.Intention {
-        object Retry: Intentions()
-        object LaunchForecast: Intentions()
+    override fun onAttach(context: Context) {
+        super.onAttach(context)
+        viewModel.intentChannel.offer(CurrentlyViewModel.ViewModelIntention.LoadUI)
     }
 
-    override fun render(state: WeatherViewModel.ViewModelState) {
+    override fun render(view: ViewBinding, state: WeatherViewModel.State) {
         when (state) {
-            is Model.Success<*>
-                -> viewBinding?.apply { render(state.viewProperties as CurrentlyViewProperties) }
+            is CurrentlyViewModel.ViewModelState.Content
+                -> viewBinding?.apply { showContent(state.model) }
         }
     }
 
-    override fun <V : ViewBinding, T : Any> V.render(viewProperties: T) {
-        //apply to layout
+    private fun FragmentCurrentlyBinding.showContent(model: CurrentlyLayoutModel) {
+        weatherView.emissionRate = if (model.condition.isNotEmpty()) 1.0f else 0.0f
     }
-
 }

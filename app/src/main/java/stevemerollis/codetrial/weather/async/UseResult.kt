@@ -2,20 +2,14 @@ package stevemerollis.codetrial.weather.async
 
 import stevemerollis.codetrial.weather.error.ui.ErrorView
 
-sealed class Model<out T> {
+sealed class UseResult<out T> {
 
-    /**
-     * Success response with body
-     */
-    class Success<out T>(val viewProperties: T): Model<T>() {
+    class Success<out T>(val model: T): UseResult<T>() {
         override fun toString(): String = "Success"
     }
 
-    sealed class Error(val model: ErrorView): Model<Nothing>(), ErrorView {
+    sealed class Error(val model: ErrorView): UseResult<Nothing>(), ErrorView {
 
-        /**
-         *
-         */
         object Generic: Error(object: ErrorView {
 
         })
@@ -28,9 +22,6 @@ sealed class Model<out T> {
 
         })
 
-        /**
-         * The offer properties in the intent bundle that launched the payment app are not legal
-         */
         object InvalidArgs: Error(object: ErrorView {
 
         })

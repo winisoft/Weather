@@ -1,6 +1,8 @@
 package stevemerollis.codetrial.weather.app
 
-import dispatch.core.DispatcherProvider
+import dagger.Binds
+import dagger.Provides
+import dispatch.core.*
 import kotlinx.coroutines.*
 import javax.inject.Inject
 import javax.inject.Singleton
@@ -14,7 +16,7 @@ constructor()
 
     private val job: Job = SupervisorJob()
 
-    private val handleException: (CoroutineContext, Throwable?) -> Unit = { ctx, thr ->}
+    private val handleException: (CoroutineContext, Throwable?) -> Unit = { _, _ ->}
 
     private val exceptionHandler = CoroutineExceptionHandler(handleException)
 

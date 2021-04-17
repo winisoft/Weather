@@ -28,17 +28,17 @@ class ErrorFragment: Fragment(R.layout.fragment_error), LifecycleOwner {
     }
 
     private fun FragmentErrorBinding.setError(error: ViewModelState.Error) = view.apply {
-        tvErrorTitle.text = getString(error.titleRes)
-        tvErrorMessage.text = getString(error.contentRes)
-        btnErrorAction.text = getString(error.actionTextRes)
+        tvErrorTitle.text = getString(error.rTitle)
+        tvErrorMessage.text = getString(error.rMessage)
+        btnErrorAction.text = getString(error.rActionText)
         btnErrorAction.setOnClickListener {
             // model.action(requireActivity() as HostActivity)
         }
-        error.secondaryAction?.apply {
+        error.actionSecondary?.apply {
             btnErrorActionSecondary.visibility = View.VISIBLE
-            btnErrorActionSecondary.text = error.secondaryTextRes?.let { getString(it) } ?: ""
+            btnErrorActionSecondary.text = error.rActionTextSecondary?.let { getString(it) } ?: ""
             btnErrorActionSecondary.setOnClickListener {
-                run { error.secondaryAction } ?: return@setOnClickListener
+                run { error.actionSecondary } ?: return@setOnClickListener
             }
         }
 

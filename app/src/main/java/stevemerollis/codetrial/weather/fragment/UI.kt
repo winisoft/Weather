@@ -8,13 +8,8 @@ import stevemerollis.codetrial.weather.viewmodel.WeatherViewModel
 @OptIn(ExperimentalCoroutinesApi::class)
 interface UI {
 
-    val vm: WeatherViewModel
+    val viewModel: WeatherViewModel
 
-    fun <V: ViewBinding, T: Any> V.render(viewProperties: T)
+    fun render(view: ViewBinding, state: WeatherViewModel.State)
 
-    val intentionFlow: Flow<Intention>
-
-    fun render(state: WeatherViewModel.ViewModelState)
-
-    interface Intention
 }

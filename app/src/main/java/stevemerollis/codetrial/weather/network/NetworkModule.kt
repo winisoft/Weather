@@ -30,9 +30,6 @@ import javax.inject.Singleton
 @InstallIn(SingletonComponent::class)
 class NetworkModule {
 
-    @Provides @Singleton @Named("base_api_url")
-    fun provideBaseApiUrl(): String = "https://openweathermap.org/api"
-
     @Provides 
     fun provideMoshi(): Moshi = Moshi
         .Builder().apply {
@@ -92,7 +89,7 @@ class NetworkModule {
         moshi: MoshiConverterFactory,
     ): Retrofit = Retrofit.Builder().apply {
         client(okHttpClient)
-        baseUrl(provideBaseApiUrl())
+        baseUrl("https://openweathermap.org/api")
         addConverterFactory(moshi)
     }.build()
 

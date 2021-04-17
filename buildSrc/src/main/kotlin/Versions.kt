@@ -2,7 +2,6 @@ import org.gradle.api.artifacts.Dependency
 
 object Versions {
 
-
     const val androidGradlePlugin_v4_0_1 = "7.0.0-alpha14"
 
     const val kotlin_v1_4_32 = "1.4.32"
@@ -21,6 +20,7 @@ object Versions {
     const val androidx_swipeRefreshLayout_v1_1_0 = "1.1.0"
 
     const val jetpack_lifecycle_v2_3_4 = "2.3.4"
+    const val protobuf_v0_8_15: String = "0.8.15"
 
     const val codeQuality_leakCanary_v2_7 = "2.7"
     const val codeQuality_lint_v26_6_3 = "26.6.3"

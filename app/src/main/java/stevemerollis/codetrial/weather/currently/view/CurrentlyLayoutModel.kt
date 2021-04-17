@@ -1,8 +1,8 @@
-package stevemerollis.codetrial.weather.currently.vm
+package stevemerollis.codetrial.weather.currently.view
 
 import android.graphics.drawable.Drawable
 
-data class CurrentlyViewProperties(
+data class CurrentlyLayoutModel(
     val condition: String,
     val icon: Drawable,
     val wind: String,

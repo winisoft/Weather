@@ -3,7 +3,6 @@ package stevemerollis.codetrial.weather.host
 import androidx.lifecycle.SavedStateHandle
 import androidx.lifecycle.ViewModel
 import dagger.hilt.android.lifecycle.HiltViewModel
-import stevemerollis.codetrial.weather.settings.app.WeatherPreferences
 import javax.inject.Inject
 
 

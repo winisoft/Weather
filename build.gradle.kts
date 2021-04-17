@@ -13,6 +13,7 @@ buildscript {
         classpath(Dependencies.CodeQuality.detektPlugin)
         classpath(Dependencies.CodeQuality.ktlintPlugin)
         classpath(Dependencies.CodeQuality.jacoco)
+        classpath(Dependencies.ProtoBuf.gradlePlugin)
     }
 }
 
@@ -53,7 +54,6 @@ allprojects {
 
     repositories {
         google()
-        jcenter()
         maven(url = "https://jitpack.io")
     }
 }
