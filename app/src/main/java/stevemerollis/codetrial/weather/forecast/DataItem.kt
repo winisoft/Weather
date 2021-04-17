@@ -1,8 +1,8 @@
 package stevemerollis.codetrial.weather.forecast
 
 import com.squareup.moshi.Json
-import stevemerollis.codetrial.weather.conditions.entity.Main
-import stevemerollis.codetrial.weather.conditions.entity.Weather
+import stevemerollis.codetrial.weather.api.model.Main
+import stevemerollis.codetrial.weather.api.model.Weather
 
 
 /**

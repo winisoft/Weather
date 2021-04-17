@@ -7,24 +7,32 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewBinding
 import androidx.lifecycle.LifecycleOwner
+import androidx.viewbinding.ViewBinding
 import stevemerollis.codetrial.weather.R
 import stevemerollis.codetrial.weather.async.ViewModelState
 import stevemerollis.codetrial.weather.databinding.FragmentErrorBinding
 import dagger.hilt.android.AndroidEntryPoint
+import kotlinx.coroutines.ExperimentalCoroutinesApi
+import stevemerollis.codetrial.weather.fragment.WeatherFragment
 import stevemerollis.codetrial.weather.util.lo.logI
+import stevemerollis.codetrial.weather.viewmodel.WeatherViewModel
 
 
+@OptIn(ExperimentalCoroutinesApi::class)
 @AndroidEntryPoint
-class ErrorFragment: Fragment(R.layout.fragment_error), LifecycleOwner {
+class ErrorFragment: WeatherFragment<FragmentErrorBinding>(FragmentErrorBinding::bind) {
 
-    private val view by viewBinding(FragmentErrorBinding::bind)
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View {
         logI { "displaying $TAG" }
         super.onCreateView(inflater, container, savedInstanceState)
-        return view.setError(arguments?.getParcelable(KEY_INTENT_ERROR)
+        return viewBinding?.setError(arguments?.getParcelable(KEY_INTENT_ERROR)
             ?: throw IllegalArgumentException("ErrorFragment launched without required Model.Error arg")
-        ).root
+        )?.rootView ?: container!!.rootView
+    }
+
+    override fun render(view: ViewBinding, state: WeatherViewModel.State) {
+        TODO("Not yet implemented")
     }
 
     private fun FragmentErrorBinding.setError(error: ViewModelState.Error) = view.apply {

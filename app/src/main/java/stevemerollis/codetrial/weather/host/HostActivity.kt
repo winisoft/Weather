@@ -12,22 +12,20 @@ import androidx.navigation.findNavController
 import dagger.hilt.android.AndroidEntryPoint
 import dagger.hilt.android.EntryPointAccessors
 import stevemerollis.codetrial.weather.R
-import stevemerollis.codetrial.weather.activity.FragmentInjectorEntryPoint
+import stevemerollis.codetrial.weather.activity.BaseActivity
+import stevemerollis.codetrial.weather.activity.BaseActivityEntryPoint
 import stevemerollis.codetrial.weather.databinding.ActivityHostBinding
 import stevemerollis.codetrial.weather.util.lo.logD
 
 
 @AndroidEntryPoint
-class HostActivity : FragmentActivity() {
+class HostActivity : BaseActivity() {
 
     private val viewModel: HostViewModel by viewModels()
     private val viewBinding: ActivityHostBinding? by viewBinding(ActivityHostBinding::inflate)
     private val navController: NavController by lazy { findNavController(R.id.nav_host) }
 
     override fun onCreate(savedInstanceState: Bundle?) {
-        EntryPointAccessors.fromApplication(this, FragmentInjectorEntryPoint::class.java)
-            .getFragmentInjector()
-            .apply { supportFragmentManager.fragmentFactory = this }
         super.onCreate(savedInstanceState)
         logD { "$TAG: launched" }
         viewBinding?.apply {
@@ -35,7 +33,6 @@ class HostActivity : FragmentActivity() {
             setContentView(root)
             setActionBar(toolbar)
         }
-
     }
 
     override fun onRequestPermissionsResult(requestCode: Int, permissions: Array<out String>, grantResults: IntArray) {
@@ -43,8 +40,7 @@ class HostActivity : FragmentActivity() {
 
         handlePermissionsResult(requestCode, permissions, grantResults,
             onPermissionGranted = {
-                if (permissions.contains(Manifest.permission.ACCESS_FINE_LOCATION)) {
-                }
+                //if (permissions.contains(Manifest.permission.ACCESS_FINE_LOCATION)) { } else { }
             },
             onPermissionDenied = {
 

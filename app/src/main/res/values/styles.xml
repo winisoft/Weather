@@ -26,7 +26,6 @@
         <item name="btn_numpad_focused">@color/btn_numpad_focused_chevy</item>
         <item name="btn_numpad_pressed">@color/btn_numpad_pressed_chevy</item>
         <item name="btn_numpad_disabled">@color/btn_numpad_disabled_chevy</item>
-        <item name="backspaceSelector">@drawable/btn_backspace_selector_chevy</item>
     </style>
 
     <style name="AppTheme.Light">
@@ -37,9 +36,6 @@
         <item name="btn_numpad_focused">@color/btn_numpad_focused_gmc</item>
         <item name="btn_numpad_pressed">@color/btn_numpad_pressed_gmc</item>
         <item name="btn_numpad_disabled">@color/btn_numpad_disabled_gmc</item>
-        <item name="backspaceSelector">@drawable/btn_backspace_selector_gmc</item>
-
-
     </style>
 
     <style name="KeyPadButton">
@@ -49,10 +45,7 @@
         <item name="android:layout_height">wrap_content</item>
         <item name="android:layout_margin">3dp</item>
         <item name="android:layout_weight">1</item>
-        <item name="android:background">@drawable/btn_numpad_selector</item>
-        <item name="android:fontFamily">@font/gmsansui_regular</item>
         <item name="android:textColor">?attr/btn_color</item>
-        <item name="android:textSize">@dimen/text_size_large</item>
     </style>
 
     <declare-styleable name="KeyPadButton">

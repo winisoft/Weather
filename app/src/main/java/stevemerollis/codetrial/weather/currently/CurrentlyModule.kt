@@ -13,7 +13,7 @@ import stevemerollis.codetrial.weather.currently.app.CurrentlyRepository
 import stevemerollis.codetrial.weather.currently.view.CurrentlyLayoutModel
 import stevemerollis.codetrial.weather.currently.vm.GetCurrentWeather
 import stevemerollis.codetrial.weather.settings.app.PreferenceManager
-import stevemerollis.codetrial.weather.util.AppIdUtil
+import stevemerollis.codetrial.weather.api.id.AppIdUtil
 import stevemerollis.codetrial.weather.viewmodel.UseCase
 
 @Module

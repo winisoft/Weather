@@ -1,44 +1,4 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="okLabel">OK</string>
-    <string name="mybrand_1_1_2_termsDetail_csm">Field that back office can populate with Terms detail</string>
-    <string name="mybrand_10_0_callAdvisor_csm">Call OnStar Advisor</string>
-    <string name="mybrand_10_2_credit_csm">Credit</string>
-    <string name="mybrand_10_2_purchase_csm">Purchase</string>
-    <string name="mybrand_10_2_subtotal_csm">Subtotal</string>
-    <string name="mybrand_10_2_taxesFees_csm">Taxes &amp; Fees</string>
-    <string name="mybrand_10_2_total_csm">Total</string>
-    <string name="mybrand_10_3_passcodeEmail_csm">Email passcode to %1$s</string>
-    <string name="mybrand_10_3_passcodeNumberEnding_csm">Text passcode to number ending in %1$s</string>
-    <string name="mybrand_10_3_ratesApply_csm">Texting and data rates may apply</string>
-    <string name="mybrand_10_3_selectDevice_csm">Select Contact Method to Authorize Purchase with a Passcode</string>
-    <string name="mybrand_10_4_enterPasscode_csm">Enter Your Passcode</string>
-    <string name="mybrand_10_4_passcodeReceipt_csm">A one-time passcode has been sent to %1$s</string>
-    <string name="mybrand_10_4_resendPasscode_csm">Resend Passcode</string>
-    <string name="mybrand_10_5_1_purchaseComplete_csm">Your Purchase is Complete!</string>
-    <string name="mybrand_10_5_1_purchaseFail_csm">Purchase Failed</string>
-    <string name="mybrand_10_5_1_purchaseReceipt_csm">A receipt for this purchase has been sent to %1$s</string>
-    <string name="mybrand_10_5_verifyingPurchase_csm">Verifying Purchase…</string>
-    <string name="mybrand_9_13_viewTerms_csm">View Terms</string>
-
-    <!--Fillers - Will be replaced by API calls-->
-    <string name="att_rosca">By checking this box, you agree that: (1) you are purchasing the above data plan from AT&amp;T, under the AT&amp;T Terms of Service at: www.att.com/USTermsandconditions (including arbitration clause); (2) OnStar will provide your billing information (including the above payment method details) to AT&amp;T and (3) AT&amp;T will begin charging the total amount listed on this page to the payment method each month until you cancel. You may cancel at any time by pressing the blue button in your vehicle or calling us at 1.888.466.7827. By placing your order, you agree to <a href = "https://www.att.com/USTermsandconditions">User Terms for Connected Vehicle Services.</a></string>
-    <string name="btn_att_terms">AT&amp;T Terms</string>
-    <string name="credit_card_description" translatable="false">Credit Card Type Image</string>
-    <string name="monthly_plans_detail" translatable="false">Monthly plans are renewed every 30 days unless canceled; cancel anytime. To cancel, contact an OnStar Advisor, visit your myBrand app, or Owner Center.</string>
-    <string name="test_phone" translatable="false">ending in 9314</string>
-    <string name="success_toast_message" translatable="false">Success!</string>
-    <string name="quote_get_failed_message" translatable="false">We were unable to retrieve a quote for this product. Please call an advisor for assistance or click \'Quit\' to return to the app that made the offer.</string>
-    <string name="contact_info_get_failed_message">We were unable to retrieve your preferred contact methods. Please call an advisor for assistance or click \'Quit\' to return to the app that made the offer.</string>
-    <string name="validate_failed_message">We were unable to validate your identity with a one-time-passcode. Please call an advisor for assistance or click \'Quit\' to return to the app that made the offer.</string>
-    <string name="monthly" translatable="false">/month</string>
-    <string name="quote_get_failed_title" translatable="false">Failed to Retrieve Quote!</string>
-    <string name="quit">Quit</string>
-    <string name="error_generic_message_quote">We were unable to complete your request at this time. Please try again.</string>
-    <string name="error_generic_title_validate">Failed to Validate the Purchase!</string>
-    <string name="error_technical_title">Process Failure</string>
-    <string name="error_technical_message">We were unable to complete your request at this time. Please try again.</string>
-    <string name="error_invalid_offer_message">The order submitted was not valid. Press \'OK\' to return to the app that offered the purchase. If the problem persists, please contact the app\'s vendor.</string>
-    <string name="error_invalid_offer_title">Received Invalid Order</string>
-    <string name="default_terms">By checking this box, you agree that: (1) you are purchasing the above data plan from AT&amp;T, under the AT&amp;T Terms of Service at:www.att.com/USTermsandconditions (including arbitration clause); (2) OnStar will provide your billing information (including the above stevemerollis.codetrial.weather method details) to AT&amp;T; and (3) AT&amp;T will charge the total amount for your data plan shown above to the selected stevemerollis.codetrial.weather method. AT&amp;T may temporarily slow data speeds if the network is busy.</string>
 </resources>

@@ -4,8 +4,6 @@
     <color name="black_shadow">#000000</color>
     <color name="white">#ffffff</color>
     <color name="black">#000000</color>
-    <color name="gmBlue">#0a5ffc</color>
-    <color name="gmGray">#0a5ffc</color>
     <color name="activityBackgroundDefault">#1a1c1d</color>
     <color name="activityBackground">#000000</color>
     <color name="activityTextDefault">#FFFFFF</color>

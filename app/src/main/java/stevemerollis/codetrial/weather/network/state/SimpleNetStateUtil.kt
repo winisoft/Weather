@@ -3,20 +3,12 @@ package stevemerollis.codetrial.weather.network.state
 import android.content.Context
 import android.content.Context.CONNECTIVITY_SERVICE
 import android.net.ConnectivityManager
-import android.net.Network
-import android.net.NetworkCapabilities
 import android.net.NetworkCapabilities.*
 import dagger.hilt.android.qualifiers.ApplicationContext
-import dagger.hilt.android.scopes.ActivityScoped
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.flow.*
-import kotlinx.coroutines.launch
-import okhttp3.Call
-import okhttp3.Request
-import okhttp3.Response
-import stevemerollis.codetrial.weather.network.helper.NetworkResult
+import stevemerollis.codetrial.weather.network.call.NetworkResult
 import javax.inject.Inject
-import javax.inject.Singleton
 
 
 class SimpleNetStateUtil

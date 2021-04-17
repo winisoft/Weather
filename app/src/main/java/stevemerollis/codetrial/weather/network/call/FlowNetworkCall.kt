@@ -9,7 +9,6 @@ import okio.IOException
 import retrofit2.Call
 import retrofit2.CallAdapter
 import retrofit2.awaitResponse
-import stevemerollis.codetrial.weather.network.helper.NetworkResult
 import java.lang.reflect.Type
 
 

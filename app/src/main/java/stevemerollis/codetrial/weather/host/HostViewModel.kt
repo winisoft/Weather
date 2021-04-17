@@ -13,16 +13,5 @@ constructor(
     val savedState: SavedStateHandle
 ): ViewModel() {
 
-//    private val uiModelFlow = combine(
-//        sharedPrefs.isNightMode()
-//    ) {
-//        return@combine CourseUiModel(
-//            courses = filterCourses(courses, filterOption),
-//            filter = filterOption.filter
-//        )
-//    }
 
-    sealed class HostUiFlow {
-
-    }
 }

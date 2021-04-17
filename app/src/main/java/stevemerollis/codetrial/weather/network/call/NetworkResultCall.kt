@@ -5,7 +5,6 @@ import okio.Timeout
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
-import stevemerollis.codetrial.weather.network.helper.NetworkResult
 import java.io.IOException
 import java.lang.UnsupportedOperationException
 import javax.inject.Inject

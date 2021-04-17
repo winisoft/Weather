@@ -11,16 +11,10 @@ import kotlinx.coroutines.flow.flowOn
 import okio.ByteString.Companion.readByteString
 
 
-fun InputStream.flowOfStrings(): Flow<String> = bufferedReader()
-        .run { use { it.lineSequence().asFlow().flowOn(Dispatchers.IO) } }
-
-fun InputStream.readSpanned(): String = bufferedReader().run {
-        available()
-        ByteArray(1024).let {
-                read(it)
-                close()
-                String(it)
+fun InputStream.flowOfStrings(): Flow<String> = bufferedReader().run {
+        use {
+                it.lineSequence()
+                        .asFlow()
+                        .flowOn(Dispatchers.IO)
         }
-
-
 }

@@ -11,6 +11,7 @@ import kotlinx.coroutines.Deferred
 import kotlinx.coroutines.flow.*
 import kotlinx.coroutines.withContext
 import stevemerollis.codetrial.weather.currently.app.CurrentlyResponse
+import stevemerollis.codetrial.weather.network.call.NetworkResult
 import java.io.IOException
 import javax.inject.Inject
 

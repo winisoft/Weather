@@ -2,7 +2,7 @@ package stevemerollis.codetrial.weather.currently.app
 
 import kotlinx.coroutines.flow.Flow
 import stevemerollis.codetrial.weather.api.options.UnitsOfMeasure
-import stevemerollis.codetrial.weather.network.helper.NetworkResult
+import stevemerollis.codetrial.weather.network.call.NetworkResult
 
 
 interface CurrentlyRepository {

@@ -12,7 +12,6 @@ import stevemerollis.codetrial.weather.currently.view.CurrentlyLayoutModel
 import stevemerollis.codetrial.weather.error.ui.ErrorView
 import stevemerollis.codetrial.weather.viewmodel.UseCase
 import stevemerollis.codetrial.weather.viewmodel.WeatherViewModel
-import stevemerollis.codetrial.weather.currently.vm.GetCurrentWeather.UseCaseIntention.FetchCurrentWeather
 import javax.inject.Inject
 
 @FlowPreview
@@ -26,15 +25,15 @@ constructor(
 
     override suspend fun getResult(intention: Intention): State = when (intention) {
         is ViewModelIntention.LoadUI ->
-            getCurrentWeather.mutate(FetchCurrentWeather).single()
+            getCurrentWeather.mutate(GetCurrentWeather.UseCaseIntention.FetchCurrentWeather).single()
         else ->
-            getCurrentWeather.mutate(FetchCurrentWeather).single()
+            getCurrentWeather.mutate(GetCurrentWeather.UseCaseIntention.FetchCurrentWeather).single()
     }.let { useCaseResult ->
         map(useCaseResult)
     }
 
     override fun <T> map(result: UseCase.Result<T>): State = when (result) {
-        is GetCurrentWeather.Result.Success<*> ->
+        is GetCurrentWeather.UseCaseResult.Success<*> ->
             ViewModelState.Content(result.data as CurrentlyLayoutModel)
         else ->
             ViewModelState.Error(object: ErrorView {})

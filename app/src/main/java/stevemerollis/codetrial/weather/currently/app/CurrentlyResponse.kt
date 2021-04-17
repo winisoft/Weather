@@ -2,11 +2,7 @@ package stevemerollis.codetrial.weather.currently.app
 
 import androidx.annotation.Keep
 import com.squareup.moshi.Json
-import stevemerollis.codetrial.weather.conditions.*
-import stevemerollis.codetrial.weather.conditions.entity.Clouds
-import stevemerollis.codetrial.weather.conditions.entity.Main
-import stevemerollis.codetrial.weather.conditions.entity.Sys
-import stevemerollis.codetrial.weather.conditions.entity.Wind
+import stevemerollis.codetrial.weather.api.model.*
 import stevemerollis.codetrial.weather.location.Coordinates
 
 
@@ -22,7 +18,11 @@ data class CurrentlyResponse(
      * Main element of the reading, containing the most precise figures
      */
     val main: Main,
-    val visibility: Int, // 16093
+    /**
+     * In configured distance units
+     * ex. 16093
+     */
+    val visibility: Int,
     val wind: Wind,
     val clouds: Clouds,
     /**

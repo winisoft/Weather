@@ -11,6 +11,7 @@ import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.callbackFlow
 import kotlinx.coroutines.flow.onStart
 import kotlinx.coroutines.flow.take
+import stevemerollis.codetrial.weather.util.lo.logD
 import kotlin.coroutines.EmptyCoroutineContext
 
 @ExperimentalCoroutinesApi
@@ -27,7 +28,7 @@ fun EditText.firstChange(): Flow<Unit> {
         awaitClose {
             Dispatchers.Main.dispatch(EmptyCoroutineContext) {
                 removeTextChangedListener(listener)
-                Log.d("###", "removeTextChangedListener $listener ${this@firstChange}")
+                logD { "EditText: removeTextChangedListener $listener ${this@firstChange}" }
             }
         }
     }.take(1)

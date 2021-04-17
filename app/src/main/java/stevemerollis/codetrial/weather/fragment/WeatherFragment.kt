@@ -18,32 +18,8 @@ import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.LifecycleOwner
 import androidx.lifecycle.Observer
 
-typealias ViewBinder = (View) -> ViewBinding
-
-//abstract class BoundView<T: ViewBinding>(
-//    context: Context,
-//    attr: AttributeSet? = null,
-//    defAttrStr: Int = 0
-//): View(context, attr, defAttrStr),
-//    ViewBinding,
-//    ReadOnlyProperty<View, KProperty<*>> {
-//
-//    //val factory: () -> T = LayoutInflater.from(context)
-//
-//    override fun getRoot(): View = this.rootView
-//
-//    //val bindingDelegate = FragmentViewBindingDelegate<T>
-//
-//    override fun onFinishInflate() {
-//        super.onFinishInflate()
-//    }
-//
-//    //override fun getValue(thisRef: View, property: KProperty<*>): T = binding ?:
-//
-//}
-
 @ExperimentalCoroutinesApi
-abstract class WeatherFragment<T>(private val viewFactory: (View) -> ViewBinding)
+abstract class WeatherFragment<T>(private val viewFactory: (View) -> T)
 : Fragment(),
     UI,
     DefaultLifecycleObserver,
