@@ -32,13 +32,13 @@ sealed class ViewModelState<out T> {
         @Parcelize
         object Generic: Error(), Parcelable {
 
-            override val rTitle: Int get() = R.string.mybrand_10_5_1_purchaseFail_csm
+            override val rTitle: Int get() = R.string.title
 
-            override val rMessage: Int get() = R.string.error_generic_message_quote
+            override val rMessage: Int get() = R.string.message
 
-            override val rActionText: Int get() = R.string.quit
+            override val rActionText: Int get() = R.string.actionText
 
-            override val rActionTextSecondary: Int get() = R.string.mybrand_10_0_callAdvisor_csm
+            override val rActionTextSecondary: Int get() = R.string.actionTextSecondary
 
             override val action: () -> Any? get() = ::execute as () -> Any?
 
@@ -62,13 +62,13 @@ sealed class ViewModelState<out T> {
         object Technical: Error(), Parcelable {
 
             override val rTitle: Int
-                get() = R.string.error_technical_title
+                get() = R.string.title
 
             override val rMessage: Int
-                get() = R.string.error_technical_message
+                get() = R.string.message
 
             override val rActionText: Int
-                get() = R.string.okLabel
+                get() = R.string.actionText
 
             override val rActionTextSecondary: Int?
                 get() = null

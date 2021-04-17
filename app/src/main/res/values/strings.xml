@@ -1,4 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="okLabel">OK</string>
+    <string name="failed">Failed</string>
+    <string name="failure">Failure</string>
+    <string name="title">Title</string>
+    <string name="message">Message</string>
+    <string name="actionText">Action Text</string>
+    <string name="actionTextSecondary">Action Text Secondary</string>
+    <string name="locationDeniedExplanation">Location Denied Explanation</string>
+    <string name="locationDeniedMessage">Location Denied Message</string>
 </resources>

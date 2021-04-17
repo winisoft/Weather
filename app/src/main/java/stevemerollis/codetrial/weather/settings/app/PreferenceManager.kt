@@ -31,7 +31,6 @@ constructor(
     override fun getUnitOfMeasure(): Flow<UnitsOfMeasure> =
         read(PreferencesKeys.unitOfMeasure, UnitsOfMeasure.Standard.key).map { UnitsOfMeasure.fromKey(it) }
 
-
     override suspend fun setUnitOfMeasure(uom: UnitsOfMeasure) {
         prefsStore.edit {
             it[PreferencesKeys.unitOfMeasure] = uom.key
@@ -54,8 +53,6 @@ constructor(
     companion object {
         private val TAG: String = PreferenceManager::class.simpleName.toString()
         private const val WEATHER_PREFERENCES_NAME = "weather_preferences"
-        //val prefsFile: File = preferencesDataStore()
-
         const val DATA_STORE_FILE_NAME = "weather_prefs.pb"
         private const val UNIT_OF_MEASURE_KEY = "unit_of_measure"
     }

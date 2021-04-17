@@ -122,8 +122,8 @@ class HostActivity : BaseActivity() {
             val permissions: List<AppPermission> by lazy { listOf(PermissionLocation) }
         }
 
-        object PermissionLocation: AppPermission(Manifest.permission.CALL_PHONE, 100,
-                R.string.mybrand_10_5_1_purchaseFail_csm, R.string.mybrand_10_5_1_purchaseFail_csm
+        object PermissionLocation: AppPermission(Manifest.permission.ACCESS_FINE_LOCATION, 100,
+                R.string.locationDeniedMessage, R.string.locationDeniedExplanation
         )
     }
 
