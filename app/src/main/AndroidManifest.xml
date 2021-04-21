@@ -19,7 +19,7 @@
         tools:ignore="AllowBackup">
 
         <activity
-            android:name="stevemerollis.codetrial.weather.host.HostActivity"
+            android:name="stevemerollis.codetrial.weather.main.MainActivity"
             android:clearTaskOnLaunch="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

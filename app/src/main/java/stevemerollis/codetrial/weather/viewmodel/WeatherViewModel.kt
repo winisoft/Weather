@@ -2,6 +2,7 @@
 
 package stevemerollis.codetrial.weather.viewmodel
 
+import android.os.Parcelable
 import dagger.hilt.android.scopes.ViewModelScoped
 import dispatch.android.viewmodel.DispatchViewModel
 import dispatch.core.DefaultCoroutineScope
@@ -11,42 +12,25 @@ import kotlinx.coroutines.cancel
 import kotlinx.coroutines.channels.Channel
 import kotlinx.coroutines.flow.*
 import kotlinx.coroutines.launch
-import stevemerollis.codetrial.weather.fragment.UI
+import kotlinx.parcelize.Parcelize
+import stevemerollis.codetrial.weather.R
+import stevemerollis.codetrial.weather.async.AsyncResult
+import stevemerollis.codetrial.weather.async.ViewModelState
+import stevemerollis.codetrial.weather.main.MainActivity
+import stevemerollis.codetrial.weather.modelstore.ModelSubscriber
+import stevemerollis.codetrial.weather.util.lo.logD
+import java.io.IOException
 
 @ExperimentalCoroutinesApi
 @ViewModelScoped
-abstract class WeatherViewModel
-: DispatchViewModel() {
+abstract class WeatherViewModel<S>
+: DispatchViewModel(), ModelSubscriber<S> {
 
-    fun mutate(intention: Intention): StateFlow<State> {
-        return intentChannel.apply { offer(intention) }.run { stateFlow }
-    }
+    val _stateFlow = MutableStateFlow<S>(State.Init as S)
 
-    val intentChannel: Channel<Intention> = Channel(Channel.UNLIMITED)
+    abstract val stateFlow: StateFlow<S>
 
-    val stateFlow: StateFlow<State> = MutableStateFlow(State.Init)
-        suspend fun get() = intentChannel
-            .consumeAsFlow()
-            .transform<Intention, State> {
-                emit(getResult(it))
-            }.onStart {
-                emit(State.Loading)
-            }.stateIn(viewModelScope)
+    abstract fun UseCase.Result<*>.map(): S
 
-    abstract suspend fun getResult(intention: Intention): State
 
-    abstract fun <T> map(result: UseCase.Result<T>): State
-
-    interface Intention
-
-    interface State {
-        object Init: State
-        object Loading: State
-    }
-
-    init {
-        viewModelScope.launch {
-            stateFlow::value.get()
-        }
-    }
 }

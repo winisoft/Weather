@@ -17,6 +17,7 @@ import dagger.hilt.components.SingletonComponent
 
 import dagger.multibindings.IntKey
 import dagger.multibindings.IntoMap
+import dispatch.core.DispatcherProvider
 import okhttp3.*
 import retrofit2.Retrofit
 import retrofit2.converter.moshi.MoshiConverterFactory
@@ -89,7 +90,7 @@ class NetworkModule {
         moshi: MoshiConverterFactory,
     ): Retrofit = Retrofit.Builder().apply {
         client(okHttpClient)
-        baseUrl("https://openweathermap.org/api")
+        baseUrl("https://openweathermap.org/api/")
         addConverterFactory(moshi)
     }.build()
 
@@ -120,7 +121,8 @@ class NetworkModule {
     @IntoMap
     @IntKey(0)
     fun provideNetHelper(
+        dispatcher: DispatcherProvider,
         openWeatherApi: OpenWeatherApi,
         netStateUtil: NetStateUtil
-    ): NetworkHelper = NetworkHelperImpl(openWeatherApi, netStateUtil)
+    ): NetworkHelper = NetworkHelperImpl(dispatcher, openWeatherApi, netStateUtil)
 }

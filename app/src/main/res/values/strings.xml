@@ -9,4 +9,6 @@
     <string name="actionTextSecondary">Action Text Secondary</string>
     <string name="locationDeniedExplanation">Location Denied Explanation</string>
     <string name="locationDeniedMessage">Location Denied Message</string>
+    <string name="currently">Currently</string>
+    <string name="forecast">Forecast</string>
 </resources>

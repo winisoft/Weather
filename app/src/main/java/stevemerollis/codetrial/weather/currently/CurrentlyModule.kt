@@ -14,6 +14,7 @@ import stevemerollis.codetrial.weather.currently.view.CurrentlyLayoutModel
 import stevemerollis.codetrial.weather.currently.vm.GetCurrentWeather
 import stevemerollis.codetrial.weather.settings.app.PreferenceManager
 import stevemerollis.codetrial.weather.api.id.AppIdUtil
+import stevemerollis.codetrial.weather.conditions.entity.ConditionsHelper
 import stevemerollis.codetrial.weather.viewmodel.UseCase
 
 @Module
@@ -33,13 +34,13 @@ object CurrentlyModule {
 
     @Provides
     fun provideGetCurrentWeatherUseCase(
-        coroutineScope: IOCoroutineScope,
+        conditionsHelper: ConditionsHelper,
         appIdUtil: AppIdUtil,
         preferenceManager: PreferenceManager,
         currentlyRepository: CurrentlyRepository
     ): UseCase<CurrentlyLayoutModel> =
         GetCurrentWeather(
-            coroutineScope,
+            conditionsHelper,
             appIdUtil,
             preferenceManager,
             currentlyRepository

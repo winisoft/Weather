@@ -6,6 +6,7 @@ import dagger.hilt.InstallIn
 import dagger.hilt.android.components.ViewModelComponent
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.FlowPreview
+import stevemerollis.codetrial.weather.currently.view.CurrentlyLayoutModel
 import stevemerollis.codetrial.weather.currently.vm.CurrentlyViewModel
 
 
@@ -16,5 +17,5 @@ abstract class ViewModelBinding {
     @Binds
     @OptIn(FlowPreview::class)
     @ExperimentalCoroutinesApi
-    abstract fun bindCurrentlyViewModel(vm: CurrentlyViewModel): WeatherViewModel
+    abstract fun bindCurrentlyViewModel(vm: CurrentlyViewModel): WeatherViewModel<CurrentlyLayoutModel>
 }

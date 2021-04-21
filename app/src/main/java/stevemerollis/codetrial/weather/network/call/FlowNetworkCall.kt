@@ -1,6 +1,5 @@
 package stevemerollis.codetrial.weather.network.call
 
-import stevemerollis.codetrial.weather.async.coroutine.CoroutineDsl.logC
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.catch
@@ -9,6 +8,7 @@ import okio.IOException
 import retrofit2.Call
 import retrofit2.CallAdapter
 import retrofit2.awaitResponse
+import stevemerollis.codetrial.weather.util.lo.logE
 import java.lang.reflect.Type
 
 
@@ -29,10 +29,10 @@ class FlowNetworkCall<R>(
         }
     }.catch { cause ->
         if (cause is IOException) {
-            logC(cause) { "call failed... for technical reasons" }
+            logE(cause) { "call failed... for technical reasons" }
             emit(NetworkResult.Error.Technical(cause))
         } else {
-            logC(cause) { "call failed... for technical reasons" }
+            logE(cause) { "call failed... for technical reasons" }
             emit(NetworkResult.Error.Generic<Nothing>(null, cause))
         }
     }

@@ -30,30 +30,6 @@ android {
         targetCompatibility = JavaVersion.VERSION_1_8
     }
 
-    flavorDimensions("environment", "audience")
-    productFlavors {
-        create("validation") {
-            dimension = "audience"
-            applicationIdSuffix = ".test"
-        }
-        create("demo") {
-            dimension = "audience"
-        }
-        create("dev") {
-            dimension = "environment"
-            applicationIdSuffix = ".dev"
-        }
-    }
-
-    variantFilter = Action<VariantFilter> {
-        repeat(flavors.filter { flavor ->
-            flavor.name.contains("validation", true)
-            && buildType.name.contains("release")
-        }.size) {
-            this@Action.ignore = true
-        }
-    }
-
     sourceSets {
 
         getByName("main") {
@@ -74,11 +50,6 @@ android {
                 "src/test/tools"
             )
         }
-
-        getByName("dev") {
-            java.srcDir("src/dev/kotlin")
-            res.srcDirs("src/main/res", "src/dev/res")
-        }
     }
 
     lint {
@@ -92,7 +63,10 @@ android {
     kotlinOptions {
         jvmTarget = "11"
         useIR = true
-        freeCompilerArgs = freeCompilerArgs.plus(listOf("-Xopt-in=kotlin.RequiresOptIn"))
+        freeCompilerArgs = freeCompilerArgs.plus(listOf(
+            "-Xopt-in=kotlin.RequiresOptIn",
+            "-Xopt-in=kotlin.RequiresOptIn"
+        ))
         languageVersion = "1.4"
     }
 }
@@ -171,6 +145,7 @@ dependencies {
     androidTestImplementation(Dependencies.Dispatch.ati_espresso)
     implementation("androidx.datastore:datastore-core:1.0.0-alpha08")
     implementation(kotlin("reflect"))
+    implementation("androidx.compose.ui:ui-viewbinding:1.0.0-beta04")
 }
 
 tasks {

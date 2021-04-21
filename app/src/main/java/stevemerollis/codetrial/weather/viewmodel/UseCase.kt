@@ -1,6 +1,8 @@
 package stevemerollis.codetrial.weather.viewmodel
 
+import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.ExperimentalCoroutinesApi
+import kotlinx.coroutines.Job
 import kotlinx.coroutines.channels.Channel
 import kotlinx.coroutines.flow.Flow
 
@@ -8,14 +10,14 @@ import kotlinx.coroutines.flow.Flow
 @OptIn(ExperimentalCoroutinesApi::class)
 interface UseCase<T> {
 
-    val intentChannel: Channel<Intention>
+
+    suspend operator fun invoke(scope: CoroutineScope): Job
 
     val resultFlow: Flow<Result<T>>
 
-    suspend fun getResult(intention: Intention): Result<T>
-
-    interface Intention
-
-    interface Result<T>
+    interface Result<T> {
+        data class Success<T>(val model: T): Result<T>
+        data class Error(val title: Int, val message: Int): Result<Nothing>
+    }
 
 }

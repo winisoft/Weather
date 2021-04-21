@@ -53,7 +53,7 @@ constructor(
     companion object {
         private val TAG: String = PreferenceManager::class.simpleName.toString()
         private const val WEATHER_PREFERENCES_NAME = "weather_preferences"
-        const val DATA_STORE_FILE_NAME = "weather_prefs.pb"
+        const val DATA_STORE_FILE_NAME = "weather.preferences_pb"
         private const val UNIT_OF_MEASURE_KEY = "unit_of_measure"
     }
 

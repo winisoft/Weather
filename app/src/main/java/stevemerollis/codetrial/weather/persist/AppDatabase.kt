@@ -6,9 +6,10 @@ import stevemerollis.codetrial.weather.api.model.ConditionCode
 
 @Database(entities = [ConditionCode::class], version = 1, exportSchema = false)
 abstract class AppDatabase : RoomDatabase() {
+
     abstract fun conditionCodeDao(): ConditionCodeDao
 
     companion object {
-        const val name = "weather-db"
+        const val NAME = "weather_db"
     }
 }

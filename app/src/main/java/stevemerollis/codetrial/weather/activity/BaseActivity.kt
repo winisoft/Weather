@@ -9,20 +9,20 @@ import kotlinx.coroutines.flow.*
 import kotlinx.coroutines.launch
 import stevemerollis.codetrial.weather.R
 
-abstract class BaseActivity: FragmentActivity() {
+abstract class BaseActivity : FragmentActivity() {
 
-    private val entryPoint: BaseActivityEntryPoint
-        get() = EntryPointAccessors.fromActivity(this, BaseActivityEntryPoint::class.java)
+    private val entryPoint: MainActivityEntryPoint
+        get() = EntryPointAccessors.fromActivity(this, MainActivityEntryPoint::class.java)
 
-    private val BaseActivityEntryPoint.themeId: Flow<Int>
+    private val MainActivityEntryPoint.themeId: Flow<Int>
         get() = getPrefs().isNightMode().transform { emit(if (it) R.style.AppTheme_Dark else R.style.AppTheme_Light) }
 
     override fun onCreate(savedInstanceState: Bundle?, persistentState: PersistableBundle?) {
-        EntryPointAccessors.fromActivity(this, BaseActivityEntryPoint::class.java).apply()
+        EntryPointAccessors.fromActivity(this, MainActivityEntryPoint::class.java).apply()
         super.onCreate(savedInstanceState, persistentState)
     }
 
-    fun BaseActivityEntryPoint.apply() {
+    fun MainActivityEntryPoint.apply() {
         supportFragmentManager.fragmentFactory = getFragmentInjector()
         lifecycleScope.launch {
             setTheme(themeId.single())

@@ -16,7 +16,6 @@ constructor()
 : Application() {
 
     override fun attachBaseContext(base: Context?) {
-        lo.logD { "Launching GM Payment app..."}
         super.attachBaseContext(base)
         System.setProperty("kotlinx.coroutines.debug", "on")
         System.getProperty("kotlinx.coroutines.debug.enable.creation.stack.trace")

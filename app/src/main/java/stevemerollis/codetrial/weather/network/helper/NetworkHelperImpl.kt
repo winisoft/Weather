@@ -1,8 +1,10 @@
 @file:Suppress("UNCHECKED_CAST")
 package stevemerollis.codetrial.weather.network.helper
 
+import dispatch.core.DispatcherProvider
+import dispatch.core.IOCoroutineScope
+import dispatch.core.ioDispatcher
 import stevemerollis.codetrial.weather.async.AsyncResult
-import stevemerollis.codetrial.weather.async.coroutine.CoroutineDsl
 import stevemerollis.codetrial.weather.network.state.NetStateUtil
 import stevemerollis.codetrial.weather.api.OpenWeatherApi
 import stevemerollis.codetrial.weather.util.lo
@@ -19,12 +21,13 @@ import javax.inject.Inject
 class NetworkHelperImpl
 @Inject
 constructor(
+    private val dispatcher: DispatcherProvider,
     private val openWeatherApi: OpenWeatherApi,
     private val netStateUtil: NetStateUtil
 ) : NetworkHelper {
 
     suspend fun <T> (() -> T).call(scope: CoroutineScope)
-            : Flow<AsyncResult<T>> = withContext(scope.coroutineContext) {
+            : Flow<AsyncResult<T>> = withContext(scope.coroutineContext + dispatcher.io) {
 
         if (netStateUtil.isNetworkAvailable().value.not()) {
             lo.logE { "Network unavailable! return generic error" }
@@ -37,7 +40,7 @@ constructor(
                     this as T
                     emit(AsyncResult.Success(this))
                 }
-            }.flowOn(CoroutineDsl.io).catch { cause: Throwable? ->
+            }.catch { cause: Throwable? ->
                 when (cause) {
                     is IOException -> {
                         lo.logE { "IOException in NetworkCall. Emit technical error to repository." }
