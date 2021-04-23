@@ -5,7 +5,10 @@ import shark.SharkLog
 import timber.log.Timber.*
 import java.util.logging.Logger
 
-
+/**
+ * LogUtil with an emphasis on brevity; in the end, nothing more than a lambda factory to forward along to
+ * Timber or whomever
+ */
 object lo {
 
     fun logV(message: () -> String) = tag("Weather").v(message())

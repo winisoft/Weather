@@ -5,6 +5,8 @@ import stevemerollis.codetrial.weather.network.http.HttpCode
 
 sealed class NetworkResult<out T> {
 
+    object Initial: NetworkResult<Nothing>()
+
     data class Success<T>(
         val response: Response<T>
     ) : NetworkResult<T>()

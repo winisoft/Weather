@@ -21,6 +21,8 @@ import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.FlowPreview
 import stevemerollis.codetrial.weather.currently.app.CurrentlyRepository
 import stevemerollis.codetrial.weather.currently.app.CurrentlyRepositoryImpl
+import stevemerollis.codetrial.weather.location.ILocationHelper
+import stevemerollis.codetrial.weather.location.LocationHelper
 import stevemerollis.codetrial.weather.main.MainFragmentFactory
 import stevemerollis.codetrial.weather.main.MainNavHostFragment
 import stevemerollis.codetrial.weather.network.helper.NetworkHelper
@@ -47,6 +49,9 @@ object AppModule {
         })
 
     @Provides
+    fun provideLocationHelper(): ILocationHelper = LocationHelper()
+
+    @Provides
     fun providePreferenceManager(prefsStore: DataStore<Preferences>)
     : PreferenceManager = PreferenceManager(prefsStore)
 
@@ -60,4 +65,7 @@ object AppModule {
     @Provides
     fun provideDispatcher(): DispatcherProvider = DispatcherProvider.invoke()
 
+    @ExperimentalCoroutinesApi
+    @Provides
+    fun provideMainFragmentFactory(locationHelper: ILocationHelper): FragmentFactory = MainFragmentFactory(locationHelper)
 }

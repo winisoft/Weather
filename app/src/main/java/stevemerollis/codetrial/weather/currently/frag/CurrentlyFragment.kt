@@ -1,31 +1,29 @@
 package stevemerollis.codetrial.weather.currently.frag
 
-import android.content.Context
+import android.Manifest
+import android.Manifest.permission.ACCESS_FINE_LOCATION
+import android.app.Activity
+import android.location.Location
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.view.clicks
-import androidx.compose.runtime.collectAsState
 import androidx.fragment.app.Fragment
-import androidx.fragment.app.initializations
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
 import dagger.hilt.android.AndroidEntryPoint
 import dagger.hilt.android.scopes.ActivityScoped
-import dispatch.core.MainCoroutineScope
-import kotlinx.coroutines.*
+import kotlinx.coroutines.ExperimentalCoroutinesApi
+import kotlinx.coroutines.FlowPreview
 import kotlinx.coroutines.flow.*
-import stevemerollis.codetrial.weather.R
-import stevemerollis.codetrial.weather.currently.frag.CurrentlyIntentionFactory.process
-import stevemerollis.codetrial.weather.currently.view.CurrentlyLayoutModel
+import kotlinx.coroutines.launch
 import stevemerollis.codetrial.weather.currently.vm.CurrentlyViewModel
 import stevemerollis.codetrial.weather.databinding.FragmentCurrentlyBinding
-import stevemerollis.codetrial.weather.fragment.FragmentViewBinder
-import stevemerollis.codetrial.weather.fragment.WeatherFragment
+import stevemerollis.codetrial.weather.location.ILocationHelper
+import stevemerollis.codetrial.weather.main.MainActivity
 import stevemerollis.codetrial.weather.modelstore.ModelSubscriber
-import stevemerollis.codetrial.weather.util.lo.logD
-import stevemerollis.codetrial.weather.viewmodel.WeatherViewModel
+import stevemerollis.codetrial.weather.permissions.PermissionsUtil
+import stevemerollis.codetrial.weather.permissions.PermissionsUtil.Companion.CODE_ACCESS_LOCATION
 import javax.inject.Inject
 
 @ActivityScoped
@@ -35,39 +33,58 @@ import javax.inject.Inject
 class CurrentlyFragment
 @Inject
 constructor(
-
-): Fragment(), UI<CurrentlyViewEvent>, ModelSubscriber<CurrentlyLayoutModel> {
+    val locationHelper: ILocationHelper
+): Fragment(), ModelSubscriber<CurrentlyViewModel.State> {
 
     private lateinit var viewBinding: FragmentCurrentlyBinding
     private val viewModel: CurrentlyViewModel by viewModels()
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View {
         viewBinding = FragmentCurrentlyBinding.inflate(inflater)
+        requestLocation()
         lifecycleScope.launchWhenResumed {
-            viewModel.stateFlow.subscribeToModel()
+            viewModel.resultFlow.subscribeToModel()
         }
+
         return viewBinding.root
     }
 
-    override fun viewEvents(): Flow<CurrentlyViewEvent> = merge(
-        flowOf(CurrentlyViewEvent.Initial)
-        //,swipes()
-    )
-
-    override suspend fun StateFlow<CurrentlyLayoutModel>.subscribeToModel() {
-        collect {
-            viewBinding.apply {
-                weatherView.angle = it.weatherViewModel.angle
-                weatherView.emissionRate = it.weatherViewModel.emissionRate
-                weatherView.fadeOutPercent = it.weatherViewModel.fadeOutPercent
-                weatherView.precipType = it.weatherViewModel.precipitationType
-                weatherView.speed = it.weatherViewModel.speed
-
-//                it.summary.condition
-//                it.summary.temperatureString
-//                it.summary.thermometerImage
-                //and so on
+    private fun requestLocation() {
+        PermissionsUtil().requestPermission(activity as Activity, ACCESS_FINE_LOCATION, CODE_ACCESS_LOCATION) { granted ->
+            if (granted) {
+                locationHelper.getLastLocation(activity as Activity).addOnSuccessListener { success ->
+                    lifecycleScope.launch {
+                        viewModel.process(CurrentlyViewEvent.Initial(success!!))
+                    }
+                }.addOnFailureListener {
+                    lifecycleScope.launch {
+                        viewModel.process(CurrentlyViewEvent.Initial(null))
+                    }
+                }
             }
+            else {
+                lifecycleScope.launch {
+                    viewModel.process(CurrentlyViewEvent.Initial(null))
+                }
+            }
+        }
+    }
+
+    override suspend fun StateFlow<CurrentlyViewModel.State>.subscribeToModel() {
+        collect {
+            when (it) {
+                is CurrentlyViewModel.State.Content -> {
+                    val result = it.value
+                    viewBinding.apply {
+                        weatherView.angle = result.weatherViewModel.angle
+                        weatherView.emissionRate = result.weatherViewModel.emissionRate
+                        weatherView.fadeOutPercent = result.weatherViewModel.fadeOutPercent
+                        weatherView.precipType = result.weatherViewModel.precipitationType
+                        weatherView.speed = result.weatherViewModel.speed
+                    }
+                }
+            }
+
         }
     }
 

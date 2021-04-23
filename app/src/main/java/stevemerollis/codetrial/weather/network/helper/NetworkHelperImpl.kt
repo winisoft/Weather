@@ -2,8 +2,6 @@
 package stevemerollis.codetrial.weather.network.helper
 
 import dispatch.core.DispatcherProvider
-import dispatch.core.IOCoroutineScope
-import dispatch.core.ioDispatcher
 import stevemerollis.codetrial.weather.async.AsyncResult
 import stevemerollis.codetrial.weather.network.state.NetStateUtil
 import stevemerollis.codetrial.weather.api.OpenWeatherApi
@@ -12,7 +10,8 @@ import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Deferred
 import kotlinx.coroutines.flow.*
 import kotlinx.coroutines.withContext
-import stevemerollis.codetrial.weather.currently.app.CurrentlyResponse
+import stevemerollis.codetrial.weather.api.options.UnitsOfMeasure
+import stevemerollis.codetrial.weather.api.model.CurrentlyResponse
 import stevemerollis.codetrial.weather.network.call.NetworkResult
 import java.io.IOException
 import javax.inject.Inject
@@ -63,7 +62,8 @@ constructor(
         val TAG: String = NetworkHelperImpl::class.simpleName.toString()
     }
 
-    override fun getCurrentWeather(): Flow<NetworkResult<CurrentlyResponse>> {
-        return openWeatherApi.getCurrentWeatherResponse(0.0, 0.0, "imperial", "")
+    override fun getCurrentWeather(appId: String, uom: UnitsOfMeasure): Flow<NetworkResult<CurrentlyResponse>> {
+
+        return openWeatherApi.getCurrentWeatherResponse(0.0, 0.0, uom.toString(), appId)
     }
 }

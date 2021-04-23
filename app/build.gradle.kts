@@ -146,6 +146,9 @@ dependencies {
     implementation("androidx.datastore:datastore-core:1.0.0-alpha08")
     implementation(kotlin("reflect"))
     implementation("androidx.compose.ui:ui-viewbinding:1.0.0-beta04")
+    implementation("com.google.android.gms:play-services-location:18.0.0")
+    implementation("io.reactivex.rxjava2:rxandroid:2.1.1")
+    implementation("io.reactivex.rxjava2:rxjava:2.2.8")
 }
 
 tasks {

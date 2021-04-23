@@ -1,23 +1,14 @@
 package stevemerollis.codetrial.weather.currently.vm
 
 import dagger.hilt.android.lifecycle.HiltViewModel
-import kotlinx.coroutines.ExperimentalCoroutinesApi
-import kotlinx.coroutines.FlowPreview
+import dispatch.android.viewmodel.DispatchViewModel
+import kotlinx.coroutines.*
+import kotlinx.coroutines.channels.Channel
 import kotlinx.coroutines.flow.*
-import kotlinx.coroutines.launch
-import stevemerollis.codetrial.weather.app.Repository
-import stevemerollis.codetrial.weather.currently.frag.CurrentlyFragment
-import stevemerollis.codetrial.weather.currently.frag.CurrentlyViewEvent
-import stevemerollis.codetrial.weather.currently.frag.UI
-import stevemerollis.codetrial.weather.currently.view.CurrentlyLayoutModel
 import stevemerollis.codetrial.weather.error.ui.ErrorView
+import stevemerollis.codetrial.weather.currently.frag.CurrentlyViewEvent
+import stevemerollis.codetrial.weather.currently.view.CurrentlyLayoutModel
 import stevemerollis.codetrial.weather.intention.Intention
-import stevemerollis.codetrial.weather.modelstore.ModelSubscriber
-import stevemerollis.codetrial.weather.util.lo.logD
-import stevemerollis.codetrial.weather.viewmodel.CurrentlyState
-import stevemerollis.codetrial.weather.viewmodel.State
-import stevemerollis.codetrial.weather.viewmodel.UseCase
-import stevemerollis.codetrial.weather.viewmodel.WeatherViewModel
 import javax.inject.Inject
 
 @FlowPreview
@@ -27,43 +18,55 @@ class CurrentlyViewModel
 @Inject
 constructor(
     private val getCurrentWeather: GetCurrentWeather
-): WeatherViewModel<CurrentlyLayoutModel>() {
+): DispatchViewModel() {
 
-    override val stateFlow: StateFlow<CurrentlyLayoutModel>
-        get() = _stateFlow
+    private val intentionChannel = Channel<Intention<State>>()
+    private val _resultFlow: MutableStateFlow<State> = MutableStateFlow(State.Init)
+    val resultFlow: StateFlow<State> get() = _resultFlow
 
-    override fun UseCase.Result<*>.map(): CurrentlyLayoutModel = when (this) {
-        is UseCase.Result.Success<*> -> {
-            this.model as CurrentlyLayoutModel
-        }
-        else -> CurrentlyLayoutModel.INITIAL // TODO: launch error fragment
+    sealed class State {
+        object Init: State()
+        object Loading: State()
+        data class Content(val value: CurrentlyLayoutModel): State()
+        data class Navigate(val value: ErrorView): State()
     }
 
-    sealed class Intentions: Intention<CurrentlyLayoutModel> {
-        object LoadUI: Intentions() {
-            override fun reduce(previous: CurrentlyLayoutModel): CurrentlyLayoutModel =
-                previous.copy()
-        }
+    sealed class Intentions: Intention<State> {
 
-        object Refresh: Intentions() {
-            override fun reduce(previous: CurrentlyLayoutModel): CurrentlyLayoutModel =
-                previous.copy()
+        data class Load(
+            val scope: CoroutineScope,
+            val getCurrentWeather: GetCurrentWeather,
+            val _resultFlow: MutableStateFlow<State>
+        ): Intentions() {
+            override suspend fun execute() {
+                getCurrentWeather().let {
+                    when (it) {
+                        is GetCurrentWeather.State.Result -> _resultFlow.value = State.Content(it.value)
+                        is GetCurrentWeather.State.Error -> _resultFlow.value = State.Navigate(it.value)
+                    }
+                }
+            }
         }
     }
 
-    sealed class CurrentlyState: State {
-        object Loading: CurrentlyState()
-        data class Content(val model: CurrentlyLayoutModel): CurrentlyState()
-        data class Error(val errorView: ErrorView): CurrentlyState()
+    suspend fun process(viewEvent: CurrentlyViewEvent) = when (viewEvent) {
+            is CurrentlyViewEvent.Initial ->
+                Intentions.Load(viewModelScope, getCurrentWeather, _resultFlow)
+            else ->
+                Intentions.Load(viewModelScope, getCurrentWeather, _resultFlow)
+        }.let {
+            intentionChannel.offer(it)
+        }
+
+    init {
+        viewModelScope.launch {
+            while (isActive)
+                intentionChannel.consumeAsFlow()
+                    .onEach { it.execute() }
+        }
     }
 
     companion object {
         val TAG: String = CurrentlyViewModel::class.simpleName.toString()
-    }
-
-    override suspend fun StateFlow<CurrentlyLayoutModel>.subscribeToModel() {
-        viewModelScope.launch {
-
-        }
     }
 }

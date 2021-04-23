@@ -5,15 +5,15 @@ import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.Job
 import kotlinx.coroutines.channels.Channel
 import kotlinx.coroutines.flow.Flow
+import kotlin.coroutines.CoroutineContext
 
 
 @OptIn(ExperimentalCoroutinesApi::class)
 interface UseCase<T> {
 
-
-    suspend operator fun invoke(scope: CoroutineScope): Job
-
-    val resultFlow: Flow<Result<T>>
+//    suspend operator fun invoke(model: T): T
+//
+//    val resultFlow: Flow<Result<T>>
 
     interface Result<T> {
         data class Success<T>(val model: T): Result<T>

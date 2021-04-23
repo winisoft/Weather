@@ -1,4 +1,4 @@
-package stevemerollis.codetrial.weather.conditions.entity
+package stevemerollis.codetrial.weather.conditions.helper
 
 import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.unit.dp
@@ -9,7 +9,7 @@ import compose.icons.fontawesomeicons.solid.*
 import stevemerollis.codetrial.weather.api.options.SpeedUnits
 import stevemerollis.codetrial.weather.api.options.TempUnits
 import stevemerollis.codetrial.weather.api.options.UnitsOfMeasure
-import stevemerollis.codetrial.weather.currently.app.CurrentlyResponse
+import stevemerollis.codetrial.weather.api.model.CurrentlyResponse
 import stevemerollis.codetrial.weather.currently.view.*
 import java.time.LocalDateTime
 import javax.inject.Inject

@@ -8,6 +8,8 @@ sealed class UnitsOfMeasure(val key: String) {
 
     abstract val speedUnits: SpeedUnits
 
+    override fun toString(): String = key
+
     object Standard: UnitsOfMeasure("standard") {
         override val speedUnits: SpeedUnits = SpeedUnits.MetersPerSecond
         override val tempUnits: TempUnits = TempUnits.Kelvin

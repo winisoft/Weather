@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
+    <string name="app_name">Weather</string>
     <string name="okLabel">OK</string>
     <string name="failed">Failed</string>
     <string name="failure">Failure</string>

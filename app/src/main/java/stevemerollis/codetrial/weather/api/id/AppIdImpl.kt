@@ -6,8 +6,7 @@ import javax.inject.Singleton
 @Singleton
 class AppIdImpl
 @Inject
-constructor()
-    : AppIdUtil {
+constructor(): AppIdUtil {
 
     override fun getApiToken(): String = ""
 }

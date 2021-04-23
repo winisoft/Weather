@@ -28,25 +28,6 @@ import kotlin.reflect.KClass
 @InstallIn(SingletonComponent::class)
 object FragmentBindingModule {
 
-//    @Provides
-//    @IntoMap
-//    @ClassKey(WeatherNavHostFragment::class)
-//    fun provideWeatherNavHostFragment(
-//        injectingFragmentFactory: WeatherFragmentFactory
-//    ): NavHostFragment = WeatherNavHostFragment(injectingFragmentFactory)
-//
-//    @Provides
-//    fun provideWeatherFragmentFactory(
-//        availableClients: Map<Class<out Fragment>, @JvmSuppressWildcards Fragment>
-//    ): FragmentFactory = WeatherFragmentFactory(availableClients)
-
-//    @OptIn(FlowPreview::class)
-//    @Provides
-//    fun fragmentFactoryProviderMap()
-//    : Map<Class<out Fragment>, @JvmSuppressWildcards Fragment> = mapOf(
-//        CurrentlyFragment::class.java to CurrentlyFragment()
-//    )
-
     @Provides
     @IntoMap
     @OptIn(FlowPreview::class)
@@ -54,20 +35,4 @@ object FragmentBindingModule {
     @ClassKey(CurrentlyFragment::class)
     fun provideCurrentlyFragment(fragment: CurrentlyFragment): CurrentlyFragment = fragment
 
-    ///region Currently Fragment
-
-//    @Provides @OptIn(FlowPreview::class) @ExperimentalCoroutinesApi
-//    fun provideFragmentProviders(
-//        availableClients: Map<KClass<out Fragment>, @JvmSuppressWildcards CurrentlyFragment>
-//    ): CurrentlyFragment {
-//        return availableClients[CurrentlyFragment::class] as? CurrentlyFragment
-//            ?: throw Exception("None were provided as entries")
-//    }
-//    @Provides
-//    fun provideFragmentProviderWeatherNavHostFragment(
-//        availableClients: Map<KClass<out Fragment>, @JvmSuppressWildcards WeatherNavHostFragment>
-//    ): WeatherNavHostFragment {
-//        return availableClients[WeatherNavHostFragment::class] ?: throw Exception("None were provided as entries")
-//    }
-    ///endregion
 }

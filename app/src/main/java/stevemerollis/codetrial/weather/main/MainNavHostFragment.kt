@@ -8,6 +8,7 @@ import androidx.navigation.fragment.NavHostFragment
 import dagger.hilt.android.AndroidEntryPoint
 import dagger.hilt.android.EntryPointAccessors
 import kotlinx.coroutines.ExperimentalCoroutinesApi
+import kotlinx.coroutines.FlowPreview
 import stevemerollis.codetrial.weather.activity.MainActivityEntryPoint
 import javax.inject.Inject
 import kotlin.properties.ReadOnlyProperty
@@ -19,7 +20,6 @@ class MainNavHostFragment
 @Inject
 constructor() : NavHostFragment(), ReadOnlyProperty<Activity, NavController> {
 
-
     lateinit var nav: NavController
 
     override fun onCreateNavController(navController: NavController) {
@@ -27,6 +27,7 @@ constructor() : NavHostFragment(), ReadOnlyProperty<Activity, NavController> {
         nav = navController
     }
 
+    @FlowPreview
     override fun onAttach(context: Context) {
         super.onAttach(context)
         childFragmentManager.fragmentFactory = EntryPointAccessors

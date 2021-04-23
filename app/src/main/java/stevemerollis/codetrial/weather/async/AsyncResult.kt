@@ -1,5 +1,13 @@
 package stevemerollis.codetrial.weather.async
 
+/**
+ * State representation of the result from some asynchronous process.
+ *
+ * A repository may return a given data type from one of several potential data sources, for instance,
+ * from a network call or from previously successful cached data. These have their own state representations,
+ * e.g. [NetworkResult] that typify unique properties of that process; this one is used to say to a
+ * use case, "data access is done, here's enough information to figure out what to show from business logic"
+ */
 sealed class AsyncResult<out T> {
 
     class Success<out T>(val data: T): AsyncResult<T>() {

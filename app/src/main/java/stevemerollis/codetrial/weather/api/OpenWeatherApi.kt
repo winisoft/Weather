@@ -3,7 +3,7 @@ package stevemerollis.codetrial.weather.api
 import kotlinx.coroutines.flow.Flow
 import retrofit2.http.GET
 import retrofit2.http.Query
-import stevemerollis.codetrial.weather.currently.app.CurrentlyResponse
+import stevemerollis.codetrial.weather.api.model.CurrentlyResponse
 import stevemerollis.codetrial.weather.forecast.ForecastResponse
 import stevemerollis.codetrial.weather.network.call.NetworkResult
 

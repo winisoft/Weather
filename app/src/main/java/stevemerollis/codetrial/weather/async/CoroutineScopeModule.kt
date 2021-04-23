@@ -1,13 +1,10 @@
 package stevemerollis.codetrial.weather.async
 
-import dagger.Binds
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
 import dagger.hilt.components.SingletonComponent
 import dispatch.core.*
-import stevemerollis.codetrial.weather.settings.app.PreferenceManager
-import stevemerollis.codetrial.weather.settings.app.Prefs
 
 @Module
 @InstallIn(SingletonComponent::class)

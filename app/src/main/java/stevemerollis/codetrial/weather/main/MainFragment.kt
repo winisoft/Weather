@@ -11,9 +11,7 @@ import stevemerollis.codetrial.weather.R
 @ExperimentalCoroutinesApi
 @AndroidEntryPoint
 class MainFragment
-constructor(
-
-): Fragment(R.layout.fragment_main) {
+: Fragment(R.layout.fragment_main) {
 
     private val TAG: String = "AppDebug"
 
@@ -21,7 +19,5 @@ constructor(
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-
-
     }
 }

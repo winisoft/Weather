@@ -1,4 +1,4 @@
-package stevemerollis.codetrial.weather.currently.app
+package stevemerollis.codetrial.weather.api.model
 
 import androidx.annotation.Keep
 import com.squareup.moshi.Json

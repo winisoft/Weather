@@ -5,6 +5,9 @@ import kotlinx.parcelize.Parcelize
 import stevemerollis.codetrial.weather.R
 import stevemerollis.codetrial.weather.main.MainActivity
 
+/**
+ * Presumes the need for an error presentation with a title, message, and one or two possible actions
+ */
 interface CurrentlyState: State {
     object Loading: CurrentlyState
     sealed class Error(
